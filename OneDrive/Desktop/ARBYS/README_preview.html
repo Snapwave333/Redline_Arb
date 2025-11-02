@@ -3,18 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>README Banner Preview</title>
+  <title>README & Social Preview — Visual Check</title>
   <style>
     body { background: #0D0D0F; color: #FFFFFF; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
     .container { max-width: 1100px; margin: 0 auto; padding: 24px; text-align: center; }
     .banner { width: 100%; height: auto; border: 1px solid #1a1a1a; box-shadow: 0 6px 24px rgba(0,0,0,0.35); }
     h1 { font-weight: 700; letter-spacing: 0.5px; }
+    .preview { width: 100%; height: auto; border: 1px solid #1a1a1a; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-top: 24px; }
+    .row { display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap; justify-content: center; }
+    .col { flex: 1 1 520px; max-width: 520px; }
   </style>
   </head>
 <body>
   <div class="container">
     <h1>Banner size preview</h1>
     <img src="./GitHub_README_Assets/readme_banner.png" alt="Redline Arbitrage Banner" class="banner" />
+    
+    <div class="row">
+      <div class="col">
+        <h2>UI Preview (Playwright)</h2>
+        <img src="./preview_ui.png" alt="UI Preview (Playwright full-page)" class="preview" />
+      </div>
+      <div class="col">
+        <h2>GitHub Social Preview</h2>
+        <img src="./GitHub_README_Assets/social_preview.png" alt="GitHub Social Preview 1200x630" class="preview" />
+      </div>
+    </div>
   </div>
 </body>
 </html>
