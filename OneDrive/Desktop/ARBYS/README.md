@@ -7,7 +7,7 @@
   
   <br/>
   
-  <img src="./GitHub_README_Assets/readme_banner.png" alt="Redline Arbitrage Banner" />
+  <img src="./GitHub_README_Assets/readme_banner.png" alt="Redline Arbitrage Banner" width="100%" />
   
   <p>
     <a href="https://github.com/Snapwave333/Redline_Arb/actions/workflows/ci.yml">
