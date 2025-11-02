@@ -96,6 +96,18 @@ Choose one of the following:
 - Checksums: [CHECKSUMS.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/CHECKSUMS.txt) (SHA256 for both artifacts)
 - Install guides (release assets): [INSTALL_PWA.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_PWA.md) · [INSTALL_DESKTOP_WINDOWS.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_DESKTOP_WINDOWS.md)
 
+### ✅ Getting Started (2‑minute setup)
+
+- Windows Desktop (recommended):
+  - Download and run the EXE: [Redline_Arb_Windows_v1.0.0.exe](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/Redline_Arb_Windows_v1.0.0.exe)
+  - Step‑by‑step guide: [INSTALL_DESKTOP_WINDOWS.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_DESKTOP_WINDOWS.md)
+
+- Mobile/Web (PWA):
+  - Download the standalone web build: [Redline_Arb_Web_v1.0.0.zip](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/Redline_Arb_Web_v1.0.0.zip)
+  - Install on Android/iOS: [INSTALL_PWA.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_PWA.md)
+
+- Verify downloads: [CHECKSUMS.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/CHECKSUMS.txt) (SHA256 for EXE & ZIP)
+
 ### Desktop Application
 
 1) Windows Binary (recommended)
