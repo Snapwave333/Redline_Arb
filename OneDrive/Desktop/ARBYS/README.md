@@ -13,12 +13,21 @@
     <a href="https://github.com/Snapwave333/Redline_Arb/actions/workflows/ci.yml">
       <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Snapwave333/Redline_Arb/ci.yml?label=CI&logo=githubactions&labelColor=%230D0D0F&color=%23FF0033" />
     </a>
+    <a href="https://github.com/Snapwave333/Redline_Arb/actions/workflows/ci.yml">
+      <img alt="QA" src="https://img.shields.io/github/actions/workflow/status/Snapwave333/Redline_Arb/ci.yml?label=QA&logo=playwright&labelColor=%230D0D0F&color=%2300FF33" />
+    </a>
     <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-%23FF0033?logo=python&labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="GUI" src="https://img.shields.io/badge/GUI-PyQt6-%23FF0033?logo=qt&labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="Web" src="https://img.shields.io/badge/Web-React%2BTS-%23FF0033?logo=react&labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="Mobile" src="https://img.shields.io/badge/Mobile-PWA-%23FF0033?logo=pwa&labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="License" src="https://img.shields.io/badge/License-MIT-%23FF0033?labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="Style" src="https://img.shields.io/badge/Style-Rajdhani%20%2B%20Orbitron-%23FF0033?labelColor=%230D0D0F&color=%23FF0033" />
+    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.0.0">
+      <img alt="Release" src="https://img.shields.io/badge/Release-v1.0.0-%23FF0033?labelColor=%230D0D0F&logo=github" />
+    </a>
+    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.0.0">
+      <img alt="Downloads" src="https://img.shields.io/badge/Downloads-Windows%20%7C%20Web-%23FF0033?labelColor=%230D0D0F&logo=download" />
+    </a>
   </p>
 </div>
 
@@ -35,6 +44,7 @@ Precision sports-arbitrage engine with a modern PyQt6 interface, tuned for perfo
 - [Features](#-features)
 - [Installation](#-installation)
 - [Usage](#-usage)
+ - [Provider Configuration](#-provider-configuration)
 - [Screenshots](#-screenshots)
 - [Tech Stack](#-tech-stack)
 - [Roadmap](#-roadmap)
@@ -78,6 +88,14 @@ The application targets sports markets, providing rapid arbitrage detection, sta
 
 Choose one of the following:
 
+### ⬇️ Quick Downloads (v1.0.0)
+
+- Release page: https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.0.0
+- Windows Desktop: [Download EXE](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/Redline_Arb_Windows_v1.0.0.exe) — see [INSTALL_DESKTOP_WINDOWS.md](INSTALL_DESKTOP_WINDOWS.md)
+- Standalone Web: [Download ZIP](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/Redline_Arb_Web_v1.0.0.zip) — see [INSTALL_PWA.md](INSTALL_PWA.md)
+- Checksums: [CHECKSUMS.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/CHECKSUMS.txt) (SHA256 for both artifacts)
+- Install guides (release assets): [INSTALL_PWA.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_PWA.md) · [INSTALL_DESKTOP_WINDOWS.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_DESKTOP_WINDOWS.md)
+
 ### Desktop Application
 
 1) Windows Binary (recommended)
@@ -102,12 +120,17 @@ python main.py
 
 Run Redline Arbitrage directly in your browser with full offline functionality:
 
-- **Requirements**: Node.js 18+, modern web browser
+- **Requirements**: Node.js 18+, Python 3.8+, modern web browser
 - **Platform**: iOS Safari, Android Chrome, desktop browsers
 - **Storage**: All data stored locally in browser (IndexedDB)
 
 ```bash
+# Start the backend API server (provides arbitrage opportunities)
 cd mobile_web_app
+python api_server.py &
+# Server runs on http://localhost:5000
+
+# Start the mobile web app
 npm install
 npm run dev
 # Open http://localhost:3000 in your browser
@@ -119,8 +142,21 @@ npm run dev
 - 🔒 Complete offline functionality
 - 💾 Local data storage (no server required)
 - 📲 PWA-ready for app-like experience
+- 🔗 Backend API integration for live opportunities
+ - 🎯 Compact sport selector (All, Soccer, Basketball, Baseball, Hockey, Tennis) with localStorage persistence
+
+**Backend API Server** (`api_server.py`):
+- Flask-based REST API serving arbitrage opportunities from real data sources
+- Fetches real sporting events from ESPN API (free, no API key required)
+- Generates arbitrage opportunities based on real events using Nash equilibrium calculations
+- Supports soccer events with real team names and match schedules
+- CORS-enabled for browser access
+- No external API keys or paid services required
+ - Accepts `sport` query parameter (`soccer`, `basketball`, `baseball`, `hockey`, `tennis`); non-`soccer` sports return data only when paid providers are configured
 
 [📖 Mobile App Documentation](mobile_web_app/README.md)
+
+PWA install guides for Android/iOS: see [INSTALL_PWA.md](INSTALL_PWA.md)
 
 #### 🧪 Testing the Mobile Web App
 
@@ -149,6 +185,55 @@ npx playwright show-report
 
 Coverage output lives at `mobile_web_app/coverage/index.html`.
 
+## 🛡️ Quality Assurance
+
+Redline Arbitrage maintains enterprise-grade quality standards with comprehensive automated testing:
+
+### Testing Infrastructure
+- **15+ E2E Test Files**: Complete user journey coverage across all features
+- **Component Testing**: Playwright CT for isolated component validation
+- **Visual Regression**: Baseline screenshots with automatic diff detection
+- **Accessibility Testing**: WCAG 2.0 A/AA compliance with axe-core automation
+- **Performance Budgets**: Core Web Vitals enforcement (LCP < 3s, FCP < 1.2s, CLS < 0.1)
+- **Cross-Browser Testing**: Chromium, Firefox, WebKit, Mobile Safari, Mobile Chrome
+
+### Quality Gates
+- **Smoke Tests**: Critical path validation (blocks all releases)
+- **Accessibility Audits**: Automated axe-core scans (blocks on violations > minor)
+- **Performance Budgets**: Core Web Vitals enforcement (blocks on regressions)
+- **Console Error Detection**: Zero-tolerance for JavaScript errors
+- **CI/CD Integration**: GitHub Actions with comprehensive artifact collection
+
+### Test Execution
+```bash
+cd mobile_web_app
+
+# Quality gate (run first)
+npm run test:smoke
+
+# Full test suite
+npm run test:e2e
+
+# Performance validation
+npm run test:perf
+
+# Accessibility compliance
+npx playwright test tests/e2e/07_accessibility.spec.ts
+
+# View detailed reports
+npx playwright show-report
+```
+
+### Release Blocking Criteria
+Releases are automatically blocked if any of these conditions are met:
+- ❌ Smoke test failures
+- ❌ Accessibility violations > minor severity
+- ❌ Performance budget breaches (LCP, FCP, CLS)
+- ❌ Console errors detected
+- ❌ Critical E2E test failures
+
+All test artifacts are uploaded to CI for debugging and trend analysis.
+
 ## ▶️ Usage
 
 - Launch the app (`Redline_Arbitrage.exe` or `python main.py`).
@@ -160,6 +245,35 @@ Tips:
 - Configure settings in `config/settings.py`.
 - First run flags live in `config/first_run_flags.json`.
 - For advanced orchestration, see `src/data_orchestrator_enhanced.py`.
+
+## 🔌 Provider Configuration
+
+Redline Arbitrage supports multiple data providers. By default, the free SofaScore Scraper is enabled. If free sources are rate-limited (e.g., 403), you can add paid providers post-production without changing source code.
+
+You have two options to configure providers:
+
+1) In-App (recommended)
+- Open Settings → API Providers
+- Add a provider (e.g., API-Sports, TheOddsAPI, Sportradar)
+- Paste your API key and enable the provider
+- Restart the app to apply settings
+
+2) CLI helper
+- Use the script to configure API-Sports as a backup provider and keep SofaScore as the free fallback:
+
+```bash
+python scripts/configure_api_sports.py --api-key YOUR_APISPORTS_KEY
+```
+
+This script:
+- Creates/updates `config/bot_config.json` preserving existing providers
+- Ensures "SofaScore Scraper" remains enabled as the highest-priority free source
+- Mirrors the API key to `.env` for discoverability
+
+Notes:
+- No API keys are committed to the repository
+- API-Sports free plan is 100 requests/day; a rate limiter is built in
+- If you prefer not to add keys during development, the app will operate with SofaScore only. Expect occasional 403s from the free scraper; the app handles them gracefully.
 
 ## 📸 Screenshots
 
