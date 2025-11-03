@@ -176,9 +176,12 @@ Run Redline Arbitrage directly in your browser with full offline functionality:
 
 ```bash
 # Start the backend API server (provides arbitrage opportunities)
-cd mobile_web_app
-python api_server.py &
-# Server runs on http://localhost:5000
+python backend/api_server.py
+# Server runs on http://127.0.0.1:5000
+# Optional: set real provider API keys (if available) before starting:
+#   PowerShell:
+#   $env:THE_ODDS_API_KEY = "<your the-odds-api key>"
+#   $env:API_SPORTS_KEY   = "<your api-sports key>"
 
 # Start the mobile web app
 npm install
@@ -197,14 +200,22 @@ Note: During the maintenance pause, do not start the mobile preview or SPA serve
 - 🔗 Backend API integration for live opportunities
  - 🎯 Compact sport selector (All, Soccer, Basketball, Baseball, Hockey, Tennis) with localStorage persistence
 
-**Backend API Server** (`api_server.py`):
-- Flask-based REST API serving arbitrage opportunities from real data sources
-- Fetches real sporting events from ESPN API (free, no API key required)
-- Generates arbitrage opportunities based on real events using Nash equilibrium calculations
-- Supports soccer events with real team names and match schedules
+**Backend API Server** (`backend/api_server.py`):
+- Flask-based REST API serving arbitrage opportunities from real provider data
+- Uses MultiAPIOrchestrator with real sources only:
+  - SofaScoreScraperProvider (free; enabled by default)
+  - APISportsProvider (requires API key; optional)
+  - TheOddsAPIProvider (requires API key; optional)
+- Computes opportunities via ArbitrageDetector; strictly no synthetic/mock data
+- Endpoints:
+  - `GET /api/health` – server and provider status
+  - `GET /api/opportunities?sport=soccer&min_profit_pct=1.0&limit=100&include_raw=false`
 - CORS-enabled for browser access
-- No external API keys or paid services required
- - Accepts `sport` query parameter (`soccer`, `basketball`, `baseball`, `hockey`, `tennis`); non-`soccer` sports return data only when paid providers are configured
+- Query parameters:
+  - `sport` (default `soccer`; other sports require paid providers configured)
+  - `min_profit_pct` (float, default `1.0`)
+  - `limit` (int, default `100`, max `500`)
+  - `include_raw` (bool, default `false`) to include normalized per-provider raw data for validation
 
 [📖 Mobile App Documentation](mobile_web_app/README.md)
 
