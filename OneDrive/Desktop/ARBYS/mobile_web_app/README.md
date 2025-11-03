@@ -2,6 +2,13 @@
 
 > Maintenance Notice: Mobile/Web build, test, and production pipelines are temporarily paused to prioritize the Desktop Client and Backend API delivery. This document is retained for reference; please use the desktop installation guides for current releases. The last published mobile/web build is available under v1.1.6 releases.
 
+Note: The backend API server now lives at `backend/api_server.py`. If you need live opportunities during development, start the backend from the project root:
+
+```bash
+python backend/api_server.py
+# Server: http://127.0.0.1:5000
+```
+
  A mobile browser-based version of the Redline Arbitrage sports betting application that runs entirely offline in your browser, with optional Live Data fetching and data usage warnings.
 
 ## Features
@@ -34,7 +41,7 @@ cd mobile_web_app
 npm install
 ```
 
-3. Start the development server:
+3. Start the development server (backend optional for offline mode):
 ```bash
 npm run dev
 ```
@@ -61,7 +68,7 @@ npm run build
 python serve.py
 ```
 
-This starts a local web server at `http://localhost:8000` that serves the complete application. The app works entirely offline after the initial load - no internet connection needed for calculations, only for fetching live odds data when available.
+This starts a local web server at `http://localhost:8000` that serves the complete application. The app works entirely offline after the initial load - no internet connection needed for calculations. For live odds data and real arbitrage opportunities, start the backend server at `backend/api_server.py`.
 
 **Perfect for:**
 - Running on any computer without installation
