@@ -105,17 +105,17 @@ The application targets sports markets, providing rapid arbitrage detection, sta
 
 Choose one of the following:
 
-### ⬇️ Quick Downloads (v1.1.6)
+### ⬇️ Quick Downloads (v1.2.1)
 
-- Release page: https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.1.6
+- Release page: https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.2.1
 - Windows Desktop:
-  - Standalone EXE (onefile): [Download](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Windows_x64_Standalone.exe) — no Python required
-  - Portable ZIP (onedir): [Download](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Windows_x64.zip) — extract and run the EXE inside
+  - Portable ZIP (onedir): [Download](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.2.1/Redline_Arbitrage_1.2.1_Windows_x64.zip) — extract and run the EXE inside
   - Guide: [INSTALL_DESKTOP_WINDOWS.md](INSTALL_DESKTOP_WINDOWS.md)
-- macOS Desktop: [Download DMG](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_macOS_universal.dmg) — see [INSTALL_DESKTOP_MACOS.md](INSTALL_DESKTOP_MACOS.md)
-- iPadOS/Web (PWA): [Download ZIP](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Web.zip) — see [INSTALL_PWA.md](INSTALL_PWA.md)
-- Checksums: [checksums.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_checksums.txt) (SHA256 for all artifacts)
-- Install guides: [Windows](INSTALL_DESKTOP_WINDOWS.md) · [macOS](INSTALL_DESKTOP_MACOS.md) · [iPadOS/Web](INSTALL_PWA.md)
+- Developer source bundles (Windows x86):
+  - Backend: [Download](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.2.1/backend_source_windows_x86.zip)
+  - Desktop: [Download](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.2.1/desktop_source_windows_x86.zip)
+- Checksums: [SHA256SUMS_v1.2.1.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.2.1/SHA256SUMS_v1.2.1.txt) (SHA256 for current artifacts)
+- Install guides: [Windows](INSTALL_DESKTOP_WINDOWS.md)
 
 ### ✅ Getting Started (2‑minute setup)
 
