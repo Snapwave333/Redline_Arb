@@ -22,11 +22,11 @@
     <img alt="Mobile" src="https://img.shields.io/badge/Mobile-PWA-%23FF0033?logo=pwa&labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="License" src="https://img.shields.io/badge/License-MIT-%23FF0033?labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="Style" src="https://img.shields.io/badge/Style-Rajdhani%20%2B%20Orbitron-%23FF0033?labelColor=%230D0D0F&color=%23FF0033" />
-    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.0.0">
-      <img alt="Release" src="https://img.shields.io/badge/Release-v1.0.0-%23FF0033?labelColor=%230D0D0F&logo=github" />
+    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.1.6">
+      <img alt="Release" src="https://img.shields.io/badge/Release-v1.1.6-%23FF0033?labelColor=%230D0D0F&logo=github" />
     </a>
-    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.0.0">
-      <img alt="Downloads" src="https://img.shields.io/badge/Downloads-Windows%20%7C%20Web-%23FF0033?labelColor=%230D0D0F&logo=download" />
+    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.1.6">
+      <img alt="Downloads" src="https://img.shields.io/badge/Downloads-Windows%20%7C%20macOS%20%7C%20iPadOS%20%7C%20Web-%23FF0033?labelColor=%230D0D0F&logo=download" />
     </a>
   </p>
 </div>
@@ -34,6 +34,8 @@
 ---
 
 # 🚀 Redline Arbitrage
+
+> Maintenance Notice (deadline focus): Mobile web app build/test/production pipelines are temporarily paused. We are prioritizing the Desktop Client (Windows/macOS) and the Backend Flask API server. CI mobile QA has been disabled and mobile preview servers have been stopped. Existing mobile instructions remain below for reference only and will be re-enabled after deadlines.
 
 Precision sports-arbitrage engine with a modern PyQt6 interface, tuned for performance and reliability. Built for rapid market scanning, robust account health monitoring, and one-click execution workflows. Brand-focused presentation using the Redline palette: `#FF0033` (accent), `#0D0D0F` (charcoal), `#FFFFFF` (white).
 
@@ -45,6 +47,8 @@ Precision sports-arbitrage engine with a modern PyQt6 interface, tuned for perfo
 - [Installation](#-installation)
 - [Usage](#-usage)
  - [Provider Configuration](#-provider-configuration)
+ - [Build/Packaging (Windows)](#-buildpackaging-windows)
+ - [Troubleshooting](#-troubleshooting)
 - [Screenshots](#-screenshots)
 - [Tech Stack](#-tech-stack)
 - [Roadmap](#-roadmap)
@@ -88,30 +92,40 @@ The application targets sports markets, providing rapid arbitrage detection, sta
 
 Choose one of the following:
 
-### ⬇️ Quick Downloads (v1.0.0)
+### ⬇️ Quick Downloads (v1.1.6)
 
-- Release page: https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.0.0
-- Windows Desktop: [Download EXE](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/Redline_Arb_Windows_v1.0.0.exe) — see [INSTALL_DESKTOP_WINDOWS.md](INSTALL_DESKTOP_WINDOWS.md)
-- Standalone Web: [Download ZIP](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/Redline_Arb_Web_v1.0.0.zip) — see [INSTALL_PWA.md](INSTALL_PWA.md)
-- Checksums: [CHECKSUMS.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/CHECKSUMS.txt) (SHA256 for both artifacts)
-- Install guides (release assets): [INSTALL_PWA.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_PWA.md) · [INSTALL_DESKTOP_WINDOWS.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_DESKTOP_WINDOWS.md)
+- Release page: https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.1.6
+- Windows Desktop:
+  - Standalone EXE (onefile): [Download](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Windows_x64_Standalone.exe) — no Python required
+  - Portable ZIP (onedir): [Download](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Windows_x64.zip) — extract and run the EXE inside
+  - Guide: [INSTALL_DESKTOP_WINDOWS.md](INSTALL_DESKTOP_WINDOWS.md)
+- macOS Desktop: [Download DMG](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_macOS_universal.dmg) — see [INSTALL_DESKTOP_MACOS.md](INSTALL_DESKTOP_MACOS.md)
+- iPadOS/Web (PWA): [Download ZIP](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Web.zip) — see [INSTALL_PWA.md](INSTALL_PWA.md)
+- Checksums: [checksums.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_checksums.txt) (SHA256 for all artifacts)
+- Install guides: [Windows](INSTALL_DESKTOP_WINDOWS.md) · [macOS](INSTALL_DESKTOP_MACOS.md) · [iPadOS/Web](INSTALL_PWA.md)
 
 ### ✅ Getting Started (2‑minute setup)
 
-- Windows Desktop (recommended):
-  - Download and run the EXE: [Redline_Arb_Windows_v1.0.0.exe](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/Redline_Arb_Windows_v1.0.0.exe)
-  - Step‑by‑step guide: [INSTALL_DESKTOP_WINDOWS.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_DESKTOP_WINDOWS.md)
+- **macOS Desktop**:
+- Download and mount the DMG: [Redline_Arbitrage_1.1.6_macOS_universal.dmg](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_macOS_universal.dmg)
+  - Step‑by‑step guide: [INSTALL_DESKTOP_MACOS.md](INSTALL_DESKTOP_MACOS.md)
 
-- Mobile/Web (PWA):
-  - Download the standalone web build: [Redline_Arb_Web_v1.0.0.zip](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/Redline_Arb_Web_v1.0.0.zip)
-  - Install on Android/iOS: [INSTALL_PWA.md](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/INSTALL_PWA.md)
+- **Windows Desktop**:
+- Download and run the Standalone EXE: [Redline_Arbitrage_1.1.6_Windows_x64_Standalone.exe](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Windows_x64_Standalone.exe)
+  - Or download the Portable ZIP: [Redline_Arbitrage_1.1.6_Windows_x64.zip](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Windows_x64.zip)
+  - Step‑by‑step guide: [INSTALL_DESKTOP_WINDOWS.md](INSTALL_DESKTOP_WINDOWS.md)
 
-- Verify downloads: [CHECKSUMS.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.0.0/CHECKSUMS.txt) (SHA256 for EXE & ZIP)
+- **iPadOS/Web (PWA)**:
+- Download the standalone web build: [Redline_Arbitrage_1.1.6_Web.zip](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_Web.zip)
+  - Install on iPadOS/Android: [INSTALL_PWA.md](INSTALL_PWA.md)
+
+- Verify downloads: [checksums.txt](https://github.com/Snapwave333/Redline_Arb/releases/download/v1.1.6/Redline_Arbitrage_1.1.6_checksums.txt) (SHA256 for all artifacts)
 
 ### Desktop Application
 
 1) Windows Binary (recommended)
-- Download the latest release `Redline_Arbitrage.exe` and run.
+- Standalone EXE (onefile): download `Redline_Arbitrage_<version>_Windows_x64_Standalone.exe` and run.
+- Portable ZIP (onedir): download `Redline_Arbitrage_<version>_Windows_x64.zip`, extract, then run the `Redline_Arbitrage_<version>_Windows_x64.exe` inside the folder.
 
 2) Portable ZIP
 - Download `Redline_Arbitrage.zip`, extract, and run `Redline_Arbitrage.exe` inside the folder. Configuration files will be stored locally inside the `portable_data` directory.
@@ -128,7 +142,31 @@ pip install -r requirements.txt
 python main.py
 ```
 
+### 🧱 Build/Packaging (Windows)
+
+If you want to produce a packaged Windows build (PyInstaller):
+
+1) Use the project’s Python 3.10 virtual environment to avoid DLL mismatches
+
+```powershell
+# From the project root
+.venv310\Scripts\activate
+scripts\build_windows.bat
+```
+
+2) If Windows Defender flags the build during resource injection (BeginUpdateResourceW), add a temporary exclusion for the project folder, then re-run the build:
+
+- Windows Security → Virus & threat protection → Manage settings → Add or remove exclusions → Add folder → select your ARBYS project folder
+- Re-run: `scripts\build_windows.bat`
+
+Notes:
+- The build script reads version via `scripts/read_version.py` and uses `.venv310` to run PyInstaller, preventing `pythonXY.dll` conflicts.
+- After a successful build, artifacts appear under `dist/`.
+- If `dist/` is empty, it’s likely Defender blocked the operation. Add the exclusion and try again.
+
 ### 🌐 Mobile Web App (Browser-Based)
+
+⚠ Maintenance Pause: The Mobile Web App runtime and CI pipelines are currently disabled to focus on desktop and backend delivery. The following instructions are retained for reference and will be reinstated post‑deadline. If you need a stable mobile/web build, use the last released artifacts from v1.1.6.
 
 Run Redline Arbitrage directly in your browser with full offline functionality:
 
@@ -147,6 +185,8 @@ npm install
 npm run dev
 # Open http://localhost:3000 in your browser
 ```
+
+Note: During the maintenance pause, do not start the mobile preview or SPA servers in production environments. Desktop client builds and the backend API remain fully supported.
 
 **Features**:
 - ⚡ Full arbitrage detection and stake calculation
@@ -258,6 +298,23 @@ Tips:
 - First run flags live in `config/first_run_flags.json`.
 - For advanced orchestration, see `src/data_orchestrator_enhanced.py`.
 
+#### 🧪 Production Skip Mode (Onboarding suppressed)
+
+For automated or production launches you can skip onboarding by setting:
+
+```powershell
+$env:ARBYS_SUPPRESS_WIZARD = "1"; python main.py
+```
+
+Behavior in skip mode:
+- The initial odds fetch is triggered immediately when a data source exists.
+- The periodic update thread/timer remains enabled so the table stays fresh.
+- If the free SofaScore source is rate‑limited, you’ll see a graceful warning; configure a paid provider to restore live odds.
+
+Quick checks:
+- Use “Refresh Now” in the toolbar to force an immediate re‑fetch.
+- Open Settings → API Providers to add keys for paid providers when ready.
+
 ## 🔌 Provider Configuration
 
 Redline Arbitrage supports multiple data providers. By default, the free SofaScore Scraper is enabled. If free sources are rate-limited (e.g., 403), you can add paid providers post-production without changing source code.
@@ -305,7 +362,7 @@ Social Preview (used on repo cards):
   <table>
     <tr>
       <td><img src="./previews/main_window.png" alt="Main Window" width="420"/></td>
-      <td><img src="./previews/setup_wizard.png" alt="Setup Wizard" width="420"/></td>
+<!-- Setup Wizard removed -->
     </tr>
     <tr>
       <td><img src="./previews/firstday_slideshow.png" alt="First-Day Slideshow" width="420"/></td>
@@ -352,6 +409,19 @@ Standards:
 - Linting: Ruff
 - Types: MyPy (strict mode)
 - Tests: PyTest with property/perf/integration suites
+
+## 🛠 Troubleshooting
+
+- Empty dashboard after skipping onboarding
+  - Ensure `ARBYS_SUPPRESS_WIZARD=1` and check that the log shows “initial fetch” and that the update timer is enabled
+  - Click “Refresh Now” to force a re‑fetch; if using only the free SofaScore source, occasional 403s are expected
+  - Configure a paid provider via Settings → API Providers for reliable live odds
+
+- Windows packaging build produces an empty `dist/` folder
+  - Windows Defender likely blocked resource injection; add a temporary exclusion for the project folder and re‑run `scripts\\build_windows.bat`
+
+- Backend health check warnings in logs
+  - These are expected in offline/dev environments for local endpoints; they do not block the GUI
 
 ## ✅ License
 
