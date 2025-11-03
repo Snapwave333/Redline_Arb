@@ -23,6 +23,7 @@ from typing import Any
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from dotenv import load_dotenv
 
 # Ensure project root is importable when running this file directly
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -40,6 +41,9 @@ from src.api_providers.the_odds_api import TheOddsAPIProvider  # type: ignore
 
 app = Flask(__name__)
 CORS(app)
+# Load environment variables from a local .env file if present (Windows-friendly)
+# This makes provider key setup easier without requiring manual PowerShell exports.
+load_dotenv()
 
 logger = logging.getLogger("arbys.backend")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
