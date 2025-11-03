@@ -65,3 +65,11 @@ Ensure the backend is running (above) for live health and opportunities.
 - Backend: loads `.env` at import via `python-dotenv`
 - Docs: README adds Environment (.env) section; backend README references env.example
 - Version: bumped to `v1.2.1`
+
+## Assets
+
+- backend_source_windows_x86.zip — Source-only backend bundle for Windows (includes backend/, src/, requirements.txt, scripts/backend_install.bat, backend/README.md, env.example)
+- desktop_source_windows_x86.zip — Source-only desktop GUI bundle for Windows (includes gui/, src/, main.py, requirements.txt, README.md, release_assets/INSTALL_DESKTOP_WINDOWS_X86.md, env.example)
+- Redline_Arbitrage_1.2.1_Windows_x64.zip — packaged Windows onedir build (extract and run the EXE inside)
+  - Direct download: https://github.com/Snapwave333/Redline_Arb/releases/download/v1.2.1/Redline_Arbitrage_1.2.1_Windows_x64.zip
+  - SHA256: 446AA09351ACAED656F2272A7BEBCEDDBE4A8F694A1D9290496FC9F5308B0A3E

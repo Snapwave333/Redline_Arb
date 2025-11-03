@@ -39,6 +39,19 @@
 
 Precision sports-arbitrage engine with a modern PyQt6 interface, tuned for performance and reliability. Built for rapid market scanning, robust account health monitoring, and one-click execution workflows. Brand-focused presentation using the Redline palette: `#FF0033` (accent), `#0D0D0F` (charcoal), `#FFFFFF` (white).
 
+## v1.2.1 — Brief Changelog and Downloads
+
+- Desktop GUI: backend health indicator wired by default (provider panel footer, auto-refresh)
+- Backend Flask API: `.env` auto-loading via `python-dotenv` for easier Windows setup
+- Documentation: Windows-friendly `.env` section added to README and backend/README.md
+- New Windows artifact: Redline_Arbitrage_1.2.1_Windows_x64.zip (onedir)
+  - Download: https://github.com/Snapwave333/Redline_Arb/releases/download/v1.2.1/Redline_Arbitrage_1.2.1_Windows_x64.zip
+- Source bundles (Windows x86):
+  - Backend: https://github.com/Snapwave333/Redline_Arb/releases/download/v1.2.1/backend_source_windows_x86.zip
+  - Desktop: https://github.com/Snapwave333/Redline_Arb/releases/download/v1.2.1/desktop_source_windows_x86.zip
+
+Full release notes: https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.2.1
+
 <details>
 <summary><strong>🧭 Table of Contents</strong></summary>
 
