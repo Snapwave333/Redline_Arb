@@ -22,10 +22,10 @@
     <img alt="Mobile" src="https://img.shields.io/badge/Mobile-PWA-%23FF0033?logo=pwa&labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="License" src="https://img.shields.io/badge/License-MIT-%23FF0033?labelColor=%230D0D0F&color=%23FF0033" />
     <img alt="Style" src="https://img.shields.io/badge/Style-Rajdhani%20%2B%20Orbitron-%23FF0033?labelColor=%230D0D0F&color=%23FF0033" />
-    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.1.6">
-      <img alt="Release" src="https://img.shields.io/badge/Release-v1.1.6-%23FF0033?labelColor=%230D0D0F&logo=github" />
+    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.2.1">
+      <img alt="Release" src="https://img.shields.io/badge/Release-v1.2.1-%23FF0033?labelColor=%230D0D0F&logo=github" />
     </a>
-    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.1.6">
+    <a href="https://github.com/Snapwave333/Redline_Arb/releases/tag/v1.2.1">
       <img alt="Downloads" src="https://img.shields.io/badge/Downloads-Windows%20%7C%20macOS%20%7C%20iPadOS%20%7C%20Web-%23FF0033?labelColor=%230D0D0F&logo=download" />
     </a>
   </p>
@@ -141,6 +141,27 @@ python -m venv .venv && .venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
 ```
+
+### 🔧 Environment Configuration (.env)
+
+Both the Desktop Client and the Backend Flask API automatically load environment variables from a `.env` file via `python-dotenv`.
+
+- Copy `env.example` to `.env` in the project root and fill in your real provider keys and backend URL.
+- On Windows PowerShell, you can also set variables for the current session:
+
+```powershell
+$env:API_SPORTS_KEY   = "<your api-sports key>"
+$env:THE_ODDS_API_KEY = "<your the-odds-api key>"
+$env:ARBYS_BACKEND_URL = "http://localhost:5000"  # if running the local backend
+```
+
+Key entries in `.env`:
+- `ARBYS_BACKEND_URL` — where the GUI looks for the backend health and opportunities (default `http://localhost:5000`)
+- `API_SPORTS_KEY` — optional, enables APISportsProvider for additional sports
+- `THE_ODDS_API_KEY` — optional, enables TheOddsAPIProvider for broader market coverage
+- `SOFASCORE_ENABLED` — `1` by default for free SofaScore scraping (set `0` to disable)
+
+See `env.example` for a Windows-friendly template and tips.
 
 ### 🧱 Build/Packaging (Windows)
 
