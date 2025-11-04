@@ -1,6 +1,136 @@
 <!-- header image -->
 <p align="center">
+<!-- header image -->
+<p align="center">
   <img src="branding/banner_fullscreen.png" alt="Pixel Pusher Plus – Live VJ Engine" width="100%" />
+</p>
+
+<h1 align="center">🎮 Pixel Pusher Plus</h1>
+<p align="center">
+  <strong>Enterprise-grade, fullscreen, audio-reactive VJ engine</strong><br>
+  Built with Rust • wgpu • PowerShell launcher • Windows signed installer
+</p>
+
+---
+
+## 🚀 Quick Links
+- https://github.com/Snapwave333/pixel-pusher-plus/releases/latest
+- [User Guide & Quickstart](docs/QUICKSTART.md)
+- [Troubleshooting & Support](docs/TROUBLESHOOTING.md)
+- [Release Notes](docs/RELEASE_NOTES.md)
+
+---
+
+## 🧩 Why this exists
+Modern live-VJ setups often suffer from brittle toolchains, hidden state, and unsafe rendering (photosensitive flashes, GPU crashes, audio drop-outs).
+**Pixel Pusher Plus** addresses all that with:
+- Fullscreen launcher + double-click toggle + Esc to exit
+- Flash-limiting for photosensitivity compliance
+- Device-lost recovery, audio hot-swap, config migration
+- Signed installer + CI/CD for production quality
+  (Yes, your software should ship like a product.)
+
+---
+
+## ✅ Key Features
+- **Fullscreen / Window toggle** – double-click toggles fullscreen/windowed, Esc cleanly exits
+- **Pixel-accurate rendering** – using wgpu + custom shaders for high fidelity visuals
+- **Audio reactivity** – FFT + beat detection drive shader/ASCII layers
+- **Safety & resilience**
+  - FlashGuard: caps strobe ≤ 3 Hz, max luminance delta
+  - Watchdog: monitors FPS, auto-degrades visuals if performance drops
+  - AudioHotplug: auto fallback to silence if input fails
+- **Production ready**
+  - Versioned config with V1→V2 migration, atomic saves
+  - Signed Windows binaries + Inno Setup installer
+  - CI build pipeline: format, lint, audit, deny
+
+---
+
+## 🧰 Tech Stack
+| Layer         | Tools & Frameworks                  |
+|---------------|-------------------------------------|
+| Engine        | Rust · wgpu · winit                 |
+| GUI & Console | PowerShell launcher                 |
+| Packaging     | Inno Setup · signtool               |
+| Safety        | FlashGuard · DeviceLost recovery    |
+| CI/CD         | GitHub Actions · cargo fmt/clippy/audit |
+
+---
+
+## 🎬 Screenshot / Demo
+<p align="center">
+  <img src="branding/screenshot_live_fullscreen.png" alt="Pixel Pusher Plus – Fullscreen Live" width="80%" />
+</p>
+
+---
+
+## 📥 Install & Run (Windows)
+```powershell
+# Download & install
+Install the signed *.exe from Releases
+Double-click the desktop icon → launches fullscreen
+Double-click the window → toggle fullscreen/windowed
+Press Esc → clean shutdown
+```
+
+---
+
+## 📦 Build & Develop
+
+```bash
+git clone https://github.com/Snapwave333/pixel-pusher-plus.git
+cd pixel-pusher-plus
+cargo build --release
+```
+
+For packaging & signing: see `installer/setup.iss` and `scripts/build_release.ps1`
+
+---
+
+## 🧭 Roadmap & Future
+
+* ✅ Phase-3: Full production readiness achieved
+* ➤ Cross-platform support (macOS / Linux)
+* ➤ Multi-screen synchronization (LED wall chaining)
+* ➤ User presets / profile sharing marketplace
+
+---
+
+## 📝 License
+
+[MIT License](LICENSE) · Free for commercial & live-performance use
+Third-party assets: see `/ASSETS/THIRD-PARTY.md`
+
+---
+
+## 📫 Connect
+
+Have questions, feedback or want to collaborate?
+
+* GitHub Issues → https://github.com/Snapwave333/pixel-pusher-plus/issues
+* Email: [contact@snapwave.io](mailto:contact@snapwave.io)
+* Social: https://twitter.com/Snapwave333
+
+---
+
+<p align="center">
+  ⭐ If you like this project, give it a star and share your live visuals!
+</p>
+
+---
+
+### 🎨 Why this design works
+
+* A large **header image** at top sets visual style early.
+* Clear **project title**, one-liner description, and quick links for easy access.
+* “Why this exists” section builds story and differentiates from generic tools — aligned with best-practices.
+* **Features** and **Tech Stack** sections provide fast readability for devs and collaborators.
+* **Screenshot/demo** gives visual context quickly (increasing engagement).
+* **Install & Run** + **Build & Develop** cover both users and contributors.
+* **Roadmap** shows forward momentum, acting as a call-to-action.
+* **License** and **Contact** keep things professional and open.
+* Clean layout, badge-ready, and easy to update with future releases.
 </p>
 
 <h1 align="center">🎮 Pixel Pusher Plus</h1>
