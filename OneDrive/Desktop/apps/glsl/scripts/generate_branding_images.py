@@ -18,7 +18,7 @@ Requires:
 
 import os
 from math import sin, cos, pi
-from typing import Tuple
+from typing import Tuple, List
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -116,7 +116,7 @@ def generate_banner(path: str):
     img.save(path, format="PNG", optimize=True)
 
 
-def procedural_pattern(size: Tuple[int, int]):
+def procedural_pattern(size: Tuple[int, int], phase: float = 0.0):
     w, h = size
     img = Image.new("RGB", size)
     pixels = img.load()
@@ -128,10 +128,10 @@ def procedural_pattern(size: Tuple[int, int]):
             dx = (x - cx) / w
             dy = (y - cy) / h
             r = (dx * dx + dy * dy) ** 0.5
-            a = (pi * 8.0 * r) + sin(dx * 10.0) * 0.5 + cos(dy * 12.0) * 0.5
+            a = (pi * 8.0 * r) + sin(dx * 10.0 + phase) * 0.5 + cos(dy * 12.0 + phase * 0.8) * 0.5
             s = (sin(a) * 0.5 + 0.5)
             t = (cos(a * 0.5) * 0.5 + 0.5)
-            u = (sin(a * 0.25 + dx * 3.0) * 0.5 + 0.5)
+            u = (sin(a * 0.25 + dx * 3.0 + phase * 1.2) * 0.5 + 0.5)
 
             # Radial falloff for vignette
             falloff = max(0.0, 1.0 - r * 1.2)
@@ -160,9 +160,31 @@ def overlay_hud(img: Image.Image):
 
 def generate_screenshot(path: str):
     size = (1280, 720)
-    base = procedural_pattern(size)
+    base = procedural_pattern(size, phase=0.0)
     overlay_hud(base)
     base.save(path, format="PNG", optimize=True)
+
+
+def generate_demo_gif(path: str):
+    size = (640, 360)
+    frames: List[Image.Image] = []
+    # 60 frames ~ 2 seconds at 30 FPS
+    for i in range(60):
+        phase = i * (2 * pi / 30.0)
+        base = procedural_pattern(size, phase=phase)
+        overlay_hud(base)
+        frames.append(base)
+
+    # Save animated GIF
+    frames[0].save(
+        path,
+        save_all=True,
+        append_images=frames[1:],
+        duration=33,  # ~30 FPS
+        loop=0,
+        optimize=True,
+        disposal=2,
+    )
 
 
 def main():
@@ -172,13 +194,16 @@ def main():
 
     banner_path = os.path.join(out_dir, "banner_fullscreen.png")
     screenshot_path = os.path.join(out_dir, "screenshot_live_fullscreen.png")
+    demo_gif_path = os.path.join(out_dir, "demo_live.gif")
 
     generate_banner(banner_path)
     generate_screenshot(screenshot_path)
+    generate_demo_gif(demo_gif_path)
 
     print("Generated:")
     print(f" - {banner_path}")
     print(f" - {screenshot_path}")
+    print(f" - {demo_gif_path}")
 
 
 if __name__ == "__main__":

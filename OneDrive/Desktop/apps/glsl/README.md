@@ -11,6 +11,14 @@
   Built with Rust • wgpu • PowerShell launcher • Windows signed installer
 </p>
 
+<p align="center">
+  <a href="https://github.com/Snapwave333/pixel-pusher-plus/actions/workflows/ci.yml"><img src="https://github.com/Snapwave333/pixel-pusher-plus/actions/workflows/ci.yml/badge.svg" alt="CI Status"></a>
+  <a href="https://github.com/Snapwave333/pixel-pusher-plus/actions/workflows/test.yml"><img src="https://github.com/Snapwave333/pixel-pusher-plus/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+  <img src="https://img.shields.io/github/license/Snapwave333/pixel-pusher-plus?color=blue" alt="License">
+  <img src="https://img.shields.io/github/issues/Snapwave333/pixel-pusher-plus?logo=github" alt="Issues">
+  <img src="https://img.shields.io/github/last-commit/Snapwave333/pixel-pusher-plus?logo=github" alt="Last Commit">
+</p>
+
 ---
 
 ## 🚀 Quick Links
@@ -61,6 +69,10 @@ Modern live-VJ setups often suffer from brittle toolchains, hidden state, and un
 ## 🎬 Screenshot / Demo
 <p align="center">
   <img src="branding/screenshot_live_fullscreen.png" alt="Pixel Pusher Plus – Fullscreen Live" width="80%" />
+</p>
+
+<p align="center">
+  <img src="branding/demo_live.gif" alt="Pixel Pusher Plus – Live Demo" width="70%" />
 </p>
 
 ---
