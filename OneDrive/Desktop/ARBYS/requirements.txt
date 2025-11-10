@@ -1,0 +1,124 @@
+# ARBYS Arbitrage Bot - Python Dependencies
+# Verified and tested for production deployment
+# Python 3.10+ required
+
+# ============================================================================
+# CORE DEPENDENCIES (Required)
+# ============================================================================
+
+# HTTP Requests - For API communication
+requests>=2.31.0,<3.0.0
+
+# Async HTTP - For non-blocking API calls
+aiohttp>=3.8.0,<4.0.0
+
+# Environment Variables - For secure API key storage
+python-dotenv>=1.0.0,<2.0.0
+
+# Date/Time Parsing - For market age calculations and timestamps
+python-dateutil>=2.8.2,<3.0.0
+
+# Numerical Operations - For arbitrage calculations
+numpy>=1.24.0,<2.0.0
+
+# ============================================================================
+# GUI FRAMEWORK (Required for GUI mode)
+# ============================================================================
+
+# PyQt6 - Modern GUI framework
+PyQt6>=6.5.0,<7.0.0
+PyQt6-Qt6>=6.5.0,<7.0.0
+
+# PyQt6-WebEngine - Optional: For displaying HTML content (first-day slideshow)
+# PyQt6-WebEngine>=6.5.0,<7.0.0
+
+# Note: PyQt6 requires system libraries on Linux:
+#   Ubuntu/Debian: sudo apt-get install python3-pyqt6 python3-pyqt6.qt6 python3-pyqt6.qtwebengine
+#   Fedora: sudo dnf install python3-qt6 python3-qtwebengine
+#   macOS: brew install pyqt6
+#   Windows: pip install PyQt6-WebEngine (usually works directly)
+
+# ============================================================================
+# TESTING DEPENDENCIES (Optional - for development and testing)
+# ============================================================================
+
+# pytest - Testing framework
+pytest>=7.4.0,<8.0.0
+
+# pytest-asyncio - Async testing support
+pytest-asyncio>=0.21.0,<1.0.0
+
+# pytest-benchmark - Performance benchmarking
+pytest-benchmark>=4.0.0,<5.0.0
+
+# pytest-cov - Code coverage
+pytest-cov>=4.1.0,<5.0.0
+
+# pytest-qt - GUI testing support
+pytest-qt>=4.2.0,<5.0.0
+
+# hypothesis - Property-based testing
+hypothesis>=6.0.0,<7.0.0
+
+# ============================================================================
+# DEVELOPMENT DEPENDENCIES (For code quality and testing)
+# ============================================================================
+
+# Code formatting and linting
+black>=23.0.0,<24.0.0
+ruff>=0.1.0,<1.0.0
+isort>=5.12.0,<6.0.0
+
+# Type checking
+mypy>=1.0.0,<2.0.0
+
+# Security scanning
+bandit>=1.7.0,<2.0.0
+
+# Dependency management
+deptry>=0.8.0,<1.0.0
+
+# Dead code detection
+vulture>=2.10.0,<3.0.0
+
+# Performance profiling
+pyinstrument>=5.0.0,<6.0.0
+
+# Task runner
+nox>=2023.4.22,<2024.0.0
+
+# ============================================================================
+# DATABASE (Built-in - No external dependency)
+# ============================================================================
+# sqlite3 is included in Python standard library
+
+# ============================================================================
+# OPTIONAL DEPENDENCIES (For advanced features)
+# ============================================================================
+
+# Web Scraping - For free unlimited odds data sources
+beautifulsoup4>=4.12.0,<5.0.0
+lxml>=4.9.0,<5.0.0
+
+# Playwright - For browser automation and scraping
+playwright>=1.40.0,<2.0.0
+
+# Note: After installing, run: playwright install chromium
+
+# ============================================================================
+# VERSION NOTES
+# ============================================================================
+# - All versions pinned to major version for stability
+# - Requires Python 3.10 or higher
+# - Tested on Windows 10/11, Ubuntu 20.04/22.04, macOS 12+
+
+# ============================================================================
+# INSTALLATION
+# ============================================================================
+# pip install -r requirements.txt
+#
+# Or in virtual environment:
+# python -m venv venv
+# source venv/bin/activate  # Linux/macOS
+# venv\Scripts\activate      # Windows
+# pip install -r requirements.txt

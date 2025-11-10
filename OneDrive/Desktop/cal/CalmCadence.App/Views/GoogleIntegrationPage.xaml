@@ -1,0 +1,78 @@
+<Page
+    x:Class="CalmCadence.App.Views.GoogleIntegrationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Padding="40" RowSpacing="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Text="Google Calendar Integration"
+            Style="{ThemeResource TitleTextBlockStyle}"
+            Margin="0,0,0,12" />
+
+        <!-- Status Block -->
+        <Border Grid.Row="1" CornerRadius="8" Padding="16" BorderThickness="1">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{ThemeResource CardStrokeColorDefault}" />
+            </Border.BorderBrush>
+            <StackPanel Spacing="8">
+                <TextBlock FontWeight="SemiBold" Text="Connection Status" />
+                <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding LastSyncText}" />
+            </StackPanel>
+        </Border>
+
+        <!-- Background Sync Toggle -->
+        <Border Grid.Row="2" CornerRadius="8" Padding="16" BorderThickness="1" Margin="0,20,0,0">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{ThemeResource CardStrokeColorDefault}" />
+            </Border.BorderBrush>
+            <StackPanel Spacing="12">
+                <TextBlock FontWeight="SemiBold" Text="Background Synchronization" />
+                <StackPanel Spacing="8">
+                    <ToggleSwitch
+                        Header="Enable automatic sync"
+                        IsOn="{Binding GoogleSyncEnabled, Mode=TwoWay}"
+                        OffContent="Disabled"
+                        OnContent="Enabled" />
+                    <TextBlock
+                        Text="When enabled, calendar events will sync automatically every 6 hours in the background."
+                        TextWrapping="Wrap"
+                        Opacity="0.7"
+                        FontSize="12" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Control Buttons -->
+        <StackPanel Grid.Row="3" Orientation="Vertical" Spacing="10" Margin="0,20,0,0">
+            <Button
+                Content="Sign in with Google"
+                Click="SignInButton_Click"
+                HorizontalAlignment="Stretch" />
+
+            <Button
+                Content="Sync Calendar Now (±7 Days)"
+                Click="SyncButton_Click"
+                HorizontalAlignment="Stretch" />
+
+            <Button
+                Content="Sign Out"
+                Click="SignOutButton_Click"
+                HorizontalAlignment="Stretch" />
+        </StackPanel>
+
+        <ProgressRing Grid.Row="4" IsActive="{Binding IsLoading}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Page>

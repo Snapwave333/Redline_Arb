@@ -1,0 +1,33 @@
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+presets/
+recordings/
+exports/debug.log
+*.log
+debug.log
+config_*.toml
+
+# Arch packaging build artifacts
+/packaging/arch/src/
+/packaging/arch/pkg/
+/packaging/arch/*.pkg.tar.*
+/packaging/arch/*.src.tar.*
+/packaging/arch/*.log
+/packaging/arch/*.sig
+/packaging/arch/*.zst
+/packaging/arch/chroma/

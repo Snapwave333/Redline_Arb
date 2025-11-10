@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalshi Trading Bot - Live Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: #0a0;
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: 2px solid #0f0;
+            background: #000;
+            color: #0f0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #0f0;
+            color: #000;
+        }
+        
+        .btn.active {
+            background: #0f0;
+            color: #000;
+        }
+        
+        .btn.stop {
+            border-color: #f00;
+            color: #f00;
+        }
+        
+        .btn.stop:hover {
+            background: #f00;
+            color: #fff;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            background: #111;
+            border: 2px solid #0f0;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .tab.active {
+            background: #0a0;
+            color: #fff;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: #111;
+            border: 2px solid #0f0;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #0f0;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #888;
+        }
+        
+        .terminal {
+            background: #000;
+            border: 2px solid #0f0;
+            padding: 15px;
+            height: 400px;
+            overflow-y: auto;
+            font-size: 0.9em;
+        }
+        
+        .positions {
+            background: #000;
+            border: 2px solid #0f0;
+            padding: 15px;
+            height: 400px;
+            overflow-y: auto;
+        }
+        
+        .terminal-line, .position-line {
+            padding: 5px;
+            border-bottom: 1px solid #222;
+        }
+        
+        .refresh-btn {
+            margin-bottom: 10px;
+            padding: 5px 15px;
+            background: #111;
+            border: 1px solid #0f0;
+            color: #0f0;
+            cursor: pointer;
+        }
+        
+        .timestamp {
+            color: #888;
+        }
+        
+        .ticker {
+            color: #ff0;
+        }
+        
+        .direction-yes {
+            color: #0f0;
+        }
+        
+        .direction-no {
+            color: #f00;
+        }
+        
+        .pnl-positive {
+            color: #0f0;
+        }
+        
+        .pnl-negative {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>🤖 KALSHI TRADING BOT - LIVE DASHBOARD</h1>
+            <p>Real-time trading activity monitor</p>
+        </div>
+        <div class="controls">
+            <button class="btn" id="pauseBtn" onclick="pauseBot()">⏸ PAUSE</button>
+            <button class="btn" id="playBtn" onclick="resumeBot()">▶ PLAY</button>
+            <button class="btn stop" id="stopBtn" onclick="stopBot()">⏹ STOP</button>
+        </div>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-label">Portfolio Value</div>
+            <div class="stat-value" id="balance">$0.00</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Total Trades</div>
+            <div class="stat-value" id="totalTrades">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Bot Status</div>
+            <div class="stat-value" id="botStatus" style="font-size: 0.6em;">Running...</div>
+        </div>
+    </div>
+    
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab(0)">📊 Live Trading</div>
+        <div class="tab" onclick="switchTab(1)">💼 Positions</div>
+    </div>
+    
+    <div class="tab-content active" id="tab0">
+        <div class="terminal" id="terminal">
+            <div class="terminal-line">⚡ Waiting for trades...</div>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="tab1">
+        <button class="refresh-btn" onclick="loadPositions()">🔄 Refresh Positions</button>
+        <button class="refresh-btn" onclick="closeAllPositions()" style="border-color: #f00; color: #f00;">🗑 Close All Positions</button>
+        <div class="positions" id="positions">
+            <div>Loading positions...</div>
+        </div>
+    </div>
+    
+    <script>
+        let tradeCount = 0;
+        let isBotPaused = false;
+        let tradeInterval;
+        
+        function switchTab(index) {
+            document.querySelectorAll('.tab').forEach((t, i) => {
+                t.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.tab-content').forEach((c, i) => {
+                c.classList.toggle('active', i === index);
+            });
+        }
+        
+        async function pauseBot() {
+            try {
+                await fetch('http://localhost:3002/bot/pause', {method: 'POST'});
+                isBotPaused = true;
+                document.getElementById('botStatus').textContent = 'Paused';
+                document.getElementById('botStatus').style.color = '#ff0';
+            } catch(e) {
+                console.error('Failed to pause:', e);
+            }
+        }
+        
+        async function resumeBot() {
+            try {
+                await fetch('http://localhost:3002/bot/resume', {method: 'POST'});
+                isBotPaused = false;
+                document.getElementById('botStatus').textContent = 'Running...';
+                document.getElementById('botStatus').style.color = '#0f0';
+            } catch(e) {
+                console.error('Failed to resume:', e);
+            }
+        }
+        
+        async function stopBot() {
+            try {
+                await fetch('http://localhost:3002/bot/stop', {method: 'POST'});
+                document.getElementById('botStatus').textContent = 'Stopped';
+                document.getElementById('botStatus').style.color = '#f00';
+                clearInterval(tradeInterval);
+            } catch(e) {
+                console.error('Failed to stop:', e);
+            }
+        }
+        
+        async function loadPositions() {
+            try {
+                const response = await fetch('http://localhost:3002/positions');
+                const data = await response.json();
+                console.log('Positions data:', data); // Debug
+                
+                const positionsDiv = document.getElementById('positions');
+                positionsDiv.innerHTML = '';
+                
+                if (data.success && data.data && data.data.length > 0) {
+                    data.data.forEach(pos => {
+                        const div = document.createElement('div');
+                        div.className = 'position-line';
+                        const pnl = pos.unrealized_pnl || 0;
+                        div.innerHTML = `
+                            <strong class="ticker">${pos.ticker}</strong>
+                            Position: ${pos.position}
+                            Avg: $${pos.average_price?.toFixed(2) || '0.00'}
+                            <span class="${pnl >= 0 ? 'pnl-positive' : 'pnl-negative'}">
+                                PnL: ${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)}
+                            </span>
+                        `;
+                        positionsDiv.appendChild(div);
+                    });
+                } else {
+                    positionsDiv.innerHTML = '<div>No open positions found via API. If you have positions on Kalshi.com, they will appear here once the bot places trades.</div>';
+                }
+            } catch(e) {
+                console.error('Failed to load positions:', e);
+                document.getElementById('positions').innerHTML = '<div>Error loading positions: ' + e + '</div>';
+            }
+        }
+        
+        async function closeAllPositions() {
+            if (!confirm('Close ALL positions? This will sell everything.')) return;
+            try {
+                const response = await fetch('http://localhost:3002/positions/close-all', {method: 'POST'});
+                const data = await response.json();
+                alert(data.message || 'Attempted to close all positions');
+                loadPositions();
+            } catch(e) {
+                console.error('Failed to close positions:', e);
+            }
+        }
+        
+        async function fetchPortfolio() {
+            try {
+                const response = await fetch('http://localhost:3002/portfolio');
+                const data = await response.json();
+                console.log('Portfolio data:', data); // Debug
+                if (data.success && data.data) {
+                    const balance = data.data.balance || data.data.portfolio_value || 0;
+                    document.getElementById('balance').textContent = '$' + balance.toFixed(2);
+                }
+            } catch (e) {
+                console.log('Portfolio fetch error:', e);
+                document.getElementById('balance').textContent = '$0.00 (Error)';
+            }
+        }
+        
+        async function fetchLatestTrade() {
+            if (isBotPaused) return;
+            
+            try {
+                const response = await fetch('http://localhost:3002/trades/latest');
+                const data = await response.json();
+                
+                if (data.success && data.trade) {
+                    const trade = data.trade;
+                    tradeCount++;
+                    
+                    document.getElementById('totalTrades').textContent = tradeCount;
+                    
+                    const terminal = document.getElementById('terminal');
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line';
+                    line.innerHTML = `
+                        <span class="timestamp">[${trade.timestamp}]</span>
+                        <span class="ticker">${trade.ticker}</span>
+                        <span class="direction-${trade.direction.toLowerCase()}">${trade.direction}</span>
+                        ${trade.shares} @ $${trade.price}
+                        <span class="pnl-${trade.pnl >= 0 ? 'positive' : 'negative'}">PnL: ${trade.pnl >= 0 ? '+' : ''}$${trade.pnl.toFixed(2)}</span>
+                        <span style="color: #0f0;">${trade.status}</span>
+                    `;
+                    terminal.insertBefore(line, terminal.firstChild);
+                    
+                    while (terminal.children.length > 100) {
+                        terminal.removeChild(terminal.lastChild);
+                    }
+                }
+            } catch (e) {
+                console.log('Trade fetch error:', e);
+            }
+        }
+        
+        // Start fetching
+        tradeInterval = setInterval(fetchLatestTrade, 100);
+        fetchPortfolio();
+        setInterval(fetchPortfolio, 500);
+        loadPositions();
+    </script>
+</body>
+</html>

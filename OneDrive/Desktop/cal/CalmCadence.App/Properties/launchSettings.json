@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CalmCadence.App (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "CalmCadence.App (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

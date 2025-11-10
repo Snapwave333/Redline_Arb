@@ -1,0 +1,82 @@
+{
+  "profiles": {
+    "conservative": {
+      "description": "Conservative trading profile - high edge requirements, small positions",
+      "MIN_EDGE_THRESHOLD": 0.05,
+      "OPTIMAL_EDGE_THRESHOLD": 0.08,
+      "MAX_EDGE_THRESHOLD": 0.20,
+      "BASE_KELLY_FRACTION": 0.03,
+      "MAX_KELLY_FRACTION": 0.15,
+      "KELLY_SCALING_FACTOR": 1.5,
+      "MIN_MODEL_CONFIDENCE": 0.65,
+      "HIGH_CONFIDENCE_THRESHOLD": 0.75,
+      "MIN_LIQUIDITY_CENTS": 200,
+      "MAX_SPREAD_PERCENT": 0.08,
+      "MIN_VOLUME": 20
+    },
+    "balanced": {
+      "description": "Balanced trading profile - moderate edge requirements, standard positions",
+      "MIN_EDGE_THRESHOLD": 0.02,
+      "OPTIMAL_EDGE_THRESHOLD": 0.05,
+      "MAX_EDGE_THRESHOLD": 0.15,
+      "BASE_KELLY_FRACTION": 0.05,
+      "MAX_KELLY_FRACTION": 0.25,
+      "KELLY_SCALING_FACTOR": 2.0,
+      "MIN_MODEL_CONFIDENCE": 0.55,
+      "HIGH_CONFIDENCE_THRESHOLD": 0.70,
+      "MIN_LIQUIDITY_CENTS": 100,
+      "MAX_SPREAD_PERCENT": 0.10,
+      "MIN_VOLUME": 10
+    },
+    "aggressive": {
+      "description": "Aggressive trading profile - low edge requirements, larger positions",
+      "MIN_EDGE_THRESHOLD": 0.01,
+      "OPTIMAL_EDGE_THRESHOLD": 0.03,
+      "MAX_EDGE_THRESHOLD": 0.12,
+      "BASE_KELLY_FRACTION": 0.08,
+      "MAX_KELLY_FRACTION": 0.35,
+      "KELLY_SCALING_FACTOR": 2.5,
+      "MIN_MODEL_CONFIDENCE": 0.52,
+      "HIGH_CONFIDENCE_THRESHOLD": 0.65,
+      "MIN_LIQUIDITY_CENTS": 50,
+      "MAX_SPREAD_PERCENT": 0.15,
+      "MIN_VOLUME": 5
+    },
+    "scalping": {
+      "description": "Scalping profile - very low edge requirements, frequent small trades",
+      "MIN_EDGE_THRESHOLD": 0.005,
+      "OPTIMAL_EDGE_THRESHOLD": 0.02,
+      "MAX_EDGE_THRESHOLD": 0.08,
+      "BASE_KELLY_FRACTION": 0.02,
+      "MAX_KELLY_FRACTION": 0.10,
+      "KELLY_SCALING_FACTOR": 3.0,
+      "MIN_MODEL_CONFIDENCE": 0.51,
+      "HIGH_CONFIDENCE_THRESHOLD": 0.60,
+      "MIN_LIQUIDITY_CENTS": 25,
+      "MAX_SPREAD_PERCENT": 0.20,
+      "MIN_VOLUME": 3
+    },
+    "value": {
+      "description": "Value trading profile - high edge requirements, larger positions on strong convictions",
+      "MIN_EDGE_THRESHOLD": 0.08,
+      "OPTIMAL_EDGE_THRESHOLD": 0.12,
+      "MAX_EDGE_THRESHOLD": 0.25,
+      "BASE_KELLY_FRACTION": 0.10,
+      "MAX_KELLY_FRACTION": 0.40,
+      "KELLY_SCALING_FACTOR": 1.8,
+      "MIN_MODEL_CONFIDENCE": 0.70,
+      "HIGH_CONFIDENCE_THRESHOLD": 0.80,
+      "MIN_LIQUIDITY_CENTS": 300,
+      "MAX_SPREAD_PERCENT": 0.06,
+      "MIN_VOLUME": 30
+    }
+  },
+  "default_profile": "balanced",
+  "profile_descriptions": {
+    "conservative": "Use when you want to minimize risk and only take high-confidence trades with strong edges",
+    "balanced": "Good default for most trading scenarios - balanced risk/reward",
+    "aggressive": "Use when you want to maximize trade frequency and are comfortable with higher risk",
+    "scalping": "For high-frequency trading with very small edges and positions",
+    "value": "For deep-value trades where you have very high conviction and strong edges"
+  }
+}

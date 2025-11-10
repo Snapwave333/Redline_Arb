@@ -1,0 +1,7 @@
+# Redline Arbitrage v1.2.0 — SHA256 Checksums
+# Generated on 2025-11-03
+
+SHA256 (Redline_Arbitrage_1.2.0_Windows_x64.zip) = B6F312FCF837C0606A5473E91A237E228388A408BCA1C286751C98E416EF9290
+
+# Verification (PowerShell):
+# Get-FileHash -Algorithm SHA256 release_assets\Redline_Arbitrage_1.2.0_Windows_x64.zip

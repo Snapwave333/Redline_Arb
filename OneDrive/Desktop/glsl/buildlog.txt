@@ -1,0 +1,509 @@
+warning: chroma@0.1.0: Compiled shader written to "C:\\Users\\chrom\\OneDrive\\Desktop\\glsl\\target\\debug\\build\\chroma-9b27ce1828191325\\out\\compiled_shader.wgsl"
+   Compiling chroma v0.1.0 (C:\Users\chrom\OneDrive\Desktop\glsl)
+warning: unused import: `sleep`
+ --> src\vj\rust_autonomy_engine.rs:6:29
+  |
+6 | use tokio::time::{interval, sleep};
+  |                             ^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `ColorMode`, `PaletteType`, and `PatternType`
+ --> src\vj\rust_autonomy_engine.rs:8:21
+  |
+8 | use crate::params::{PatternType, PaletteType, ColorMode};
+  |                     ^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^
+
+warning: unused import: `VisualStyle`
+  --> src\vj\rust_autonomy_engine.rs:10:40
+   |
+10 | use super::creative_expansion_engine::{VisualStyle, CulturalOrigin, AudioContext};
+   |                                        ^^^^^^^^^^^
+
+warning: unused variable: `duration`
+   --> src\vj\rust_autonomy_engine.rs:462:59
+    |
+462 |     async fn handle_drop_event(&mut self, intensity: f32, duration: Duration) -> Result<()> {
+    |                                                           ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_duration`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `intensity`
+   --> src\vj\rust_autonomy_engine.rs:475:48
+    |
+475 |     async fn handle_breakdown_event(&mut self, intensity: f32, duration: Duration) -> Result<()> {
+    |                                                ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_intensity`
+
+warning: unused variable: `from`
+   --> src\vj\rust_autonomy_engine.rs:498:45
+    |
+498 |     async fn handle_genre_change(&mut self, from: GenreType, to: GenreType) -> Result<()> {
+    |                                             ^^^^ help: if this is intentional, prefix it with an underscore: `_from`
+
+warning: unused variable: `from`
+   --> src\vj\rust_autonomy_engine.rs:506:43
+    |
+506 |     async fn handle_mood_shift(&mut self, from: EmotionalTone, to: EmotionalTone) -> Result<()> {
+    |                                           ^^^^ help: if this is intentional, prefix it with an underscore: `_from`
+
+warning: unused variable: `scene_tx`
+   --> src\vj\rust_autonomy_engine.rs:675:22
+    |
+675 |     pub async fn new(scene_tx: mpsc::UnboundedSender<SceneEvent>) -> Result<Self> {
+    |                      ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_scene_tx`
+
+warning: unused variable: `scene_name`
+   --> src\vj\rust_autonomy_engine.rs:712:13
+    |
+712 |         let scene_name = current_scene.name.clone();
+    |             ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_scene_name`
+
+warning: unused variable: `duration`
+   --> src\vj\rust_autonomy_engine.rs:713:13
+    |
+713 |         let duration = current_scene.start_time.elapsed();
+    |             ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_duration`
+
+warning: unused variable: `mode_name`
+   --> src\vj\rust_autonomy_engine.rs:777:48
+    |
+777 |     pub async fn change_visual_mode(&mut self, mode_name: &str) -> Result<()> {
+    |                                                ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_mode_name`
+
+warning: unused variable: `current_scene`
+   --> src\vj\rust_autonomy_engine.rs:778:17
+    |
+778 |         let mut current_scene = self.current_scene.lock().unwrap();
+    |                 ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_current_scene`
+
+warning: variable does not need to be mutable
+   --> src\vj\rust_autonomy_engine.rs:778:13
+    |
+778 |         let mut current_scene = self.current_scene.lock().unwrap();
+    |             ----^^^^^^^^^^^^^
+    |             |
+    |             help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+warning: unused variable: `params`
+   --> src\vj\rust_autonomy_engine.rs:784:54
+    |
+784 |     pub async fn update_visual_parameters(&mut self, params: VisualParameters) -> Result<()> {
+    |                                                      ^^^^^^ help: if this is intentional, prefix it with an underscore: `_params`
+
+warning: unused variable: `current_scene`
+   --> src\vj\rust_autonomy_engine.rs:785:17
+    |
+785 |         let mut current_scene = self.current_scene.lock().unwrap();
+    |                 ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_current_scene`
+
+warning: variable does not need to be mutable
+   --> src\vj\rust_autonomy_engine.rs:785:13
+    |
+785 |         let mut current_scene = self.current_scene.lock().unwrap();
+    |             ----^^^^^^^^^^^^^
+    |             |
+    |             help: remove this `mut`
+
+warning: unused variable: `time`
+   --> src\vj\macro_state_engine.rs:561:48
+    |
+561 |         self.pattern_blacklist.retain(|_, &mut time| now.elapsed() < self.blacklist_duration);
+    |                                                ^^^^ help: if this is intentional, prefix it with an underscore: `_time`
+
+warning: unused variable: `time`
+   --> src\vj\macro_state_engine.rs:562:48
+    |
+562 |         self.palette_blacklist.retain(|_, &mut time| now.elapsed() < self.blacklist_duration);
+    |                                                ^^^^ help: if this is intentional, prefix it with an underscore: `_time`
+
+warning: unused variable: `sample_rate`
+  --> src\vj\advanced_audio_analyzer.rs:98:16
+   |
+98 |     pub fn new(sample_rate: f32) -> Self {
+   |                ^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_sample_rate`
+
+warning: unused variable: `genre`
+   --> src\vj\advanced_audio_analyzer.rs:340:91
+    |
+340 |     fn generate_visual_state(&mut self, spectral: &SpectralAnalysis, beat: &BeatAnalysis, genre: &GenreAnalysis) -> Result<()> {
+    |                                                                                           ^^^^^ help: if this is intentional, prefix it with an underscore: `_genre`
+
+warning: unused variable: `audio_analysis`
+   --> src\vj\creative_expansion_engine.rs:601:68
+    |
+601 |     fn select_color_mode(&self, synesthetic: &SynestheticElements, audio_analysis: &AudioAnalysisResult) -> Result<ColorMode> {
+    |                                                                    ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_audio_analysis`
+
+warning: unused variable: `audio_context`
+   --> src\vj\rust_autonomy_engine.rs:657:41
+    |
+657 |     fn find_most_effective_scene(&self, audio_context: &AudioContext, state_memory: &StateMemory) -> Result<String> {
+    |                                         ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_audio_context`
+
+warning: unused variable: `audio_analysis`
+   --> src\vj\rust_autonomy_engine.rs:970:41
+    |
+970 |     pub fn update_from_audio(&mut self, audio_analysis: &AudioAnalysisResult) -> Result<()> {
+    |                                         ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_audio_analysis`
+
+warning: fields `pattern_history` and `palette_history` are never read
+  --> src\vj\macro_state_engine.rs:38:5
+   |
+13 | pub struct MacroStateEngine {
+   |            ---------------- fields in this struct
+...
+38 |     pattern_history: VecDeque<PatternType>,
+   |     ^^^^^^^^^^^^^^^
+39 |     palette_history: VecDeque<PaletteType>,
+   |     ^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: method `get_cached_interpolation` is never used
+   --> src\vj\pattern_morpher.rs:296:8
+    |
+ 42 | impl PatternMorpher {
+    | ------------------- method in this implementation
+...
+296 |     fn get_cached_interpolation(&self, t: f32) -> f32 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: field `analysis_samples` is never read
+  --> src\vj\autonomous_startup.rs:29:5
+   |
+14 | pub struct AutonomousStartup {
+   |            ----------------- field in this struct
+...
+29 |     analysis_samples: Vec<f32>,
+   |     ^^^^^^^^^^^^^^^^
+
+warning: fields `fft_buffer` and `silence_duration` are never read
+  --> src\vj\advanced_audio_analyzer.rs:10:5
+   |
+ 7 | pub struct AdvancedAudioAnalyzer {
+   |            --------------------- fields in this struct
+...
+10 |     fft_buffer: VecDeque<f32>,
+   |     ^^^^^^^^^^
+...
+27 |     silence_duration: Duration,
+   |     ^^^^^^^^^^^^^^^^
+
+warning: fields `style_morpher`, `mood_transitions`, `creation_start_time`, and `style_history` are never read
+  --> src\vj\creative_expansion_engine.rs:25:5
+   |
+10 | pub struct CreativeExpansionEngine {
+   |            ----------------------- fields in this struct
+...
+25 |     style_morpher: StyleMorpher,
+   |     ^^^^^^^^^^^^^
+26 |     mood_transitions: MoodTransitions,
+   |     ^^^^^^^^^^^^^^^^
+...
+32 |     creation_start_time: Instant,
+   |     ^^^^^^^^^^^^^^^^^^^
+33 |     style_history: Vec<VisualStyle>,
+   |     ^^^^^^^^^^^^^
+
+warning: fields `audio_tx`, `visual_tx`, and `last_scene_change` are never read
+  --> src\vj\rust_autonomy_engine.rs:21:5
+   |
+14 | pub struct RustAutonomyEngine {
+   |            ------------------ fields in this struct
+...
+21 |     audio_tx: mpsc::UnboundedSender<AudioAnalysisResult>,
+   |     ^^^^^^^^
+22 |     visual_tx: mpsc::UnboundedSender<VisualCommand>,
+   |     ^^^^^^^^^
+...
+28 |     last_scene_change: Instant,
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: field `scene_composer` is never read
+  --> src\vj\rust_autonomy_engine.rs:46:5
+   |
+42 | pub struct SceneEngine {
+   |            ----------- field in this struct
+...
+46 |     scene_composer: SceneComposer,
+   |     ^^^^^^^^^^^^^^
+
+warning: fields `event_history` and `event_patterns` are never read
+  --> src\vj\rust_autonomy_engine.rs:51:5
+   |
+50 | pub struct MusicalEventDetector {
+   |            -------------------- fields in this struct
+51 |     event_history: VecDeque<MusicalEvent>,
+   |     ^^^^^^^^^^^^^
+52 |     event_patterns: HashMap<EventPattern, EventTrigger>,
+   |     ^^^^^^^^^^^^^^
+
+warning: field `visual_performance_history` is never read
+  --> src\vj\rust_autonomy_engine.rs:61:5
+   |
+59 | pub struct StateMemory {
+   |            ----------- field in this struct
+60 |     audio_mood_history: VecDeque<AudioMoodSnapshot>,
+61 |     visual_performance_history: VecDeque<VisualPerformanceSnapshot>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `transition_queue` and `transition_types` are never read
+   --> src\vj\rust_autonomy_engine.rs:117:5
+    |
+116 | pub struct TransitionManager {
+    |            ----------------- fields in this struct
+117 |     transition_queue: VecDeque<Transition>,
+    |     ^^^^^^^^^^^^^^^^
+118 |     current_transition: Option<Transition>,
+119 |     transition_types: HashMap<TransitionType, Box<dyn TransitionEffect>>,
+    |     ^^^^^^^^^^^^^^^^
+
+warning: fields `scene_templates`, `story_arcs`, `current_story`, and `story_progress` are never read
+   --> src\vj\rust_autonomy_engine.rs:124:5
+    |
+123 | pub struct SceneComposer {
+    |            ------------- fields in this struct
+124 |     scene_templates: HashMap<String, SceneTemplate>,
+    |     ^^^^^^^^^^^^^^^
+125 |     story_arcs: Vec<StoryArc>,
+    |     ^^^^^^^^^^
+126 |     current_story: Option<StoryArc>,
+    |     ^^^^^^^^^^^^^
+127 |     story_progress: f32,
+    |     ^^^^^^^^^^^^^^
+
+warning: fields `silence_threshold`, `last_sound_time`, and `silence_state` are never read
+   --> src\vj\rust_autonomy_engine.rs:273:5
+    |
+272 | pub struct SilenceDetector {
+    |            --------------- fields in this struct
+273 |     silence_threshold: f32,
+    |     ^^^^^^^^^^^^^^^^^
+274 |     silence_duration: Duration,
+275 |     last_sound_time: Instant,
+    |     ^^^^^^^^^^^^^^^
+276 |     silence_state: SilenceState,
+    |     ^^^^^^^^^^^^^
+
+warning: method `handle_visual_command` is never used
+   --> src\vj\rust_autonomy_engine.rs:513:14
+    |
+334 | impl RustAutonomyEngine {
+    | ----------------------- method in this implementation
+...
+513 |     async fn handle_visual_command(&mut self, command: VisualCommand) -> Result<()> {
+    |              ^^^^^^^^^^^^^^^^^^^^^
+
+warning: the `from:` in this pattern is redundant
+   --> src\vj\rust_autonomy_engine.rs:444:41
+    |
+444 |             MusicalEvent::GenreChange { from: ref from, to: ref to } => {
+    |                                         ^^^^^^^^^^^^^^ help: use shorthand field pattern: `ref from`
+    |
+    = note: `#[warn(non_shorthand_field_patterns)]` on by default
+
+warning: the `to:` in this pattern is redundant
+   --> src\vj\rust_autonomy_engine.rs:444:57
+    |
+444 |             MusicalEvent::GenreChange { from: ref from, to: ref to } => {
+    |                                                         ^^^^^^^^^^ help: use shorthand field pattern: `ref to`
+
+warning: the `from:` in this pattern is redundant
+   --> src\vj\rust_autonomy_engine.rs:447:39
+    |
+447 |             MusicalEvent::MoodShift { from: ref from, to: ref to } => {
+    |                                       ^^^^^^^^^^^^^^ help: use shorthand field pattern: `ref from`
+
+warning: the `to:` in this pattern is redundant
+   --> src\vj\rust_autonomy_engine.rs:447:55
+    |
+447 |             MusicalEvent::MoodShift { from: ref from, to: ref to } => {
+    |                                                       ^^^^^^^^^^ help: use shorthand field pattern: `ref to`
+
+warning: `chroma` (lib) generated 40 warnings (run `cargo fix --lib -p chroma` to apply 9 suggestions)
+warning: unused import: `self`
+ --> src\app\autonomous_app.rs:7:15
+  |
+7 | use std::io::{self, Write, BufWriter};
+  |               ^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `terminal_bg_color`
+   --> src\app\rendering.rs:116:3
+    |
+116 |   terminal_bg_color: Option<(u8, u8, u8)>,
+    |   ^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_terminal_bg_color`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `time`
+   --> src\app\autonomous_app.rs:590:13
+    |
+590 |         let time = self.startup_start_time.elapsed().as_secs_f32();
+    |             ^^^^ help: if this is intentional, prefix it with an underscore: `_time`
+
+warning: unused variable: `bass`
+   --> src\app\autonomous_app.rs:591:14
+    |
+591 |         let (bass, mid, treble) = bands;
+    |              ^^^^ help: if this is intentional, prefix it with an underscore: `_bass`
+
+warning: unused variable: `mid`
+   --> src\app\autonomous_app.rs:591:20
+    |
+591 |         let (bass, mid, treble) = bands;
+    |                    ^^^ help: if this is intentional, prefix it with an underscore: `_mid`
+
+warning: unused variable: `treble`
+   --> src\app\autonomous_app.rs:591:25
+    |
+591 |         let (bass, mid, treble) = bands;
+    |                         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_treble`
+
+warning: methods `set_frame_limiter` and `get_frame_limiter` are never used
+   --> src\app\mod.rs:386:10
+    |
+ 57 | impl App {
+    | -------- methods in this implementation
+...
+386 |   pub fn set_frame_limiter(&mut self, fps_limit: Option<u32>) {
+    |          ^^^^^^^^^^^^^^^^^
+...
+391 |   pub fn get_frame_limiter(&self) -> Option<u32> {
+    |          ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `build_status_text` is never used
+ --> src\app\status_bar.rs:7:8
+  |
+7 | pub fn build_status_text(params: &ShaderParams, effect_type: u32) -> String {
+  |        ^^^^^^^^^^^^^^^^^
+
+warning: function `format_status_bar` is never used
+  --> src\app\status_bar.rs:20:8
+   |
+20 | pub fn format_status_bar(
+   |        ^^^^^^^^^^^^^^^^^
+
+warning: function `truncate_status` is never used
+  --> src\app\status_bar.rs:44:4
+   |
+44 | fn truncate_status(status: String, available_cols: usize) -> String {
+   |    ^^^^^^^^^^^^^^^
+
+warning: function `apply_audio_gradient` is never used
+  --> src\app\status_bar.rs:64:4
+   |
+64 | fn apply_audio_gradient(status: String, time: f32) -> String {
+   |    ^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `VJIntegration` is never constructed
+  --> src\app\vj_integration.rs:10:12
+   |
+10 | pub struct VJIntegration {
+   |            ^^^^^^^^^^^^^
+
+warning: multiple associated items are never used
+   --> src\app\vj_integration.rs:35:12
+    |
+ 33 | impl VJIntegration {
+    | ------------------ associated items in this implementation
+ 34 |     /// Create a new VJ integration
+ 35 |     pub fn new(sample_rate: f32) -> Self {
+    |            ^^^
+...
+ 57 |     pub fn enable_autonomous_mode(&mut self) {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+ 64 |     pub fn disable_autonomous_mode(&mut self) {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+...
+ 70 |     pub fn is_autonomous_mode(&self) -> bool {
+    |            ^^^^^^^^^^^^^^^^^^
+...
+ 75 |     pub fn update_audio(&mut self, audio_samples: &[f32]) -> Result<()> {
+    |            ^^^^^^^^^^^^
+...
+108 |     pub fn get_vj_state(&self) -> VJState {
+    |            ^^^^^^^^^^^^
+...
+113 |     pub fn get_morphed_params(&self, base_params: &ShaderParams) -> ShaderParams {
+    |            ^^^^^^^^^^^^^^^^^^
+...
+130 |     pub fn get_current_pattern(&self) -> chroma::params::PatternType {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+143 |     pub fn get_current_palette(&self) -> chroma::params::PaletteType {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+152 |     pub fn get_current_color_mode(&self) -> chroma::params::ColorMode {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+161 |     pub fn update_frame(&mut self) {
+    |            ^^^^^^^^^^^^
+...
+175 |     pub fn get_fps(&self) -> f32 {
+    |            ^^^^^^^
+...
+180 |     pub fn get_vj_stats(&self) -> VJStats {
+    |            ^^^^^^^^^^^^
+...
+195 |     fn calculate_audio_analysis(&mut self, samples: &[f32]) -> Result<()> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+...
+220 |     pub fn force_transition(&mut self) -> Result<()> {
+    |            ^^^^^^^^^^^^^^^^
+...
+232 |     pub fn reset(&mut self) {
+    |            ^^^^^
+
+warning: struct `VJStats` is never constructed
+   --> src\app\vj_integration.rs:244:12
+    |
+244 | pub struct VJStats {
+    |            ^^^^^^^
+
+warning: fields `frame_count` and `last_fps_update` are never read
+  --> src\app\autonomous_app.rs:33:5
+   |
+17 | pub struct AutonomousApp {
+   |            ------------- fields in this struct
+...
+33 |     frame_count: u64,
+   |     ^^^^^^^^^^^
+34 |     last_fps_update: Instant,
+   |     ^^^^^^^^^^^^^^^
+
+warning: method `update_fps` is never used
+   --> src\app\autonomous_app.rs:480:8
+    |
+ 55 | impl AutonomousApp {
+    | ------------------ method in this implementation
+...
+480 |     fn update_fps(&mut self) {
+    |        ^^^^^^^^^^
+
+warning: constant `EFFECT_NAMES` is never used
+  --> src\constants.rs:33:11
+   |
+33 | pub const EFFECT_NAMES: [&str; 7] = [
+   |           ^^^^^^^^^^^^
+
+warning: function `hue_to_pastel_rgb` is never used
+  --> src\utils\color.rs:10:8
+   |
+10 | pub fn hue_to_pastel_rgb(hue: f32) -> (u8, u8, u8) {
+   |        ^^^^^^^^^^^^^^^^^
+
+warning: function `parse_hex_color` is never used
+  --> src\utils\color.rs:58:8
+   |
+58 | pub fn parse_hex_color(hex: &str) -> Result<(f32, f32, f32), String> {
+   |        ^^^^^^^^^^^^^^^
+
+warning: `chroma` (bin "chroma") generated 19 warnings (run `cargo fix --bin "chroma"` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.85s

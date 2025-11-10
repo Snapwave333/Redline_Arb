@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "description": "Rust-based ASCII art shader audio visualizer for your terminal",
+  "homepage": "https://github.com/yuri-xyz/chroma",
+  "license": "GPL-3.0-or-later",
+  "url": "https://github.com/yuri-xyz/chroma/releases/download/v0.2.0/chroma-windows-x86_64.zip",
+  "hash": "",
+  "bin": "chroma.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://github.com/yuri-xyz/chroma/releases/download/v$version/chroma-windows-x86_64.zip"
+  },
+  "shortcuts": [
+    [
+      "chroma.exe",
+      "Chroma Visualizer"
+    ]
+  ],
+  "notes": [
+    "Chroma is an autonomous VJ system that creates dynamic, music-reactive visual experiences.",
+    "Run 'chroma --help' for usage instructions."
+  ]
+}

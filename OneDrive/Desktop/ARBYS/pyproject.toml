@@ -1,0 +1,129 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arbys"
+version = "1.1.3"
+description = "Sports Arbitrage Betting Bot with PyQt6 GUI"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+  | build
+  | dist
+  | __pycache__
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip_gitignore = true
+known_first_party = ["src", "gui", "onboarding", "config"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+fix = true
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    "__pycache__",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "PIE", "SIM"]
+ignore = ["E501"]  # let black handle line length
+fixable = ["ALL"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false  # Allow gradual typing
+disallow_incomplete_defs = false
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+
+[[tool.mypy.overrides]]
+module = [
+    "PyQt6.*",
+    "qasync.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-q --strict-markers --maxfail=1 -ra"
+testpaths = ["tests"]
+markers = [
+    "gui: GUI tests requiring Qt",
+    "benchmark: Performance benchmark tests",
+    "integrity: Integrity validation tests",
+    "async: Async/concurrency tests",
+    "regression: Regression/backward compatibility tests",
+    "slow: Slow running tests",
+    "property: Property-based tests using hypothesis",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src", "gui", "onboarding"]
+omit = [
+    "**/__main__.py",
+    "**/__init__.py",
+    "**/tests/**",
+    "**/test_*.py",
+]
+
+[tool.coverage.report]
+fail_under = 85
+show_missing = true
+precision = 2
+skip_covered = false
+
+[tool.bandit]
+skips = ["B101"]  # asserts in tests ok
+exclude_dirs = ["tests", "venv", ".venv", "build", "dist"]
+
+[tool.vulture]
+min_confidence = 60
+paths = ["src", "gui", "onboarding"]
+exclude = ["__pycache__", "tests"]
+
+[tool.deptry]
+# Specify requirements files to scan
+requirements_files = ["requirements.txt"]
+# Map import names to package names for correct dependency detection
+package_module_name_map = {"python-dotenv" = "dotenv", "python-dateutil" = "dateutil", "beautifulsoup4" = "bs4"}
+# Exclude noxfile.py from dependency checks (it's a build configuration file)
+exclude = ["venv", "\\.venv", "\\.direnv", "tests", "\\.git", "setup\\.py", "noxfile\\.py"]
+# Ignore specific modules per error code to suppress false positives
+[tool.deptry.per_rule_ignores]
+# DEP003: Imported but marked as transitive dependency (false positives)
+# - PyQt6 submodules: correctly in requirements.txt but flagged
+# - Import name mismatches: dotenv (python-dotenv), dateutil (python-dateutil), bs4 (beautifulsoup4)
+# - Live arbitrage dependencies: uc (undetected-chromedriver), nash (nashpy)
+# - Core dependencies correctly declared in requirements.txt
+DEP003 = ["PyQt6", "PyQt6.QtCore", "PyQt6.QtWidgets", "PyQt6.QtGui", "requests", "numpy", "aiohttp", "dotenv", "dateutil", "bs4", "uc", "nash"]
+# DEP001: Imported but missing from dependency definitions (nox is in requirements.txt but not recognized)
+DEP001 = ["nox"]

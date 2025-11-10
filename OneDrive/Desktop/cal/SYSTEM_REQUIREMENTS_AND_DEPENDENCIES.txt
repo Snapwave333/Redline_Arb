@@ -1,0 +1,134 @@
+System Requirements
+-------------------
+- OS: Windows 10 (build 19041) or later
+- CPU: x86/x64/ARM64 supported (x64 recommended for AI processing)
+- RAM: 8 GB minimum (16 GB recommended for AI processing)
+- Disk: 1 GB free for binaries + 5 GB+ for media cache and AI models
+- .NET SDK: 9.0
+- PowerShell: 7+
+- Visual Studio: 2022 (v17.10+) with .NET Desktop workload
+- Windows App SDK runtime and WebView2 runtime
+- SQLite available (bundled via EF Core Sqlite provider)
+- Internet connection for AI services (with offline fallbacks)
+- Optional: FFmpeg (for video generation)
+- Optional: Google Cloud service account (for NotebookLM API)
+
+API Requirements
+----------------
+Daily Studio Module requires API keys/credentials for full functionality:
+
+Google Gemini API:
+- Get API key from: https://makersuite.google.com/app/apikey
+- Free tier available with rate limits
+- Required for AI brief generation
+
+Google Cloud Service Account (for NotebookLM):
+- Create project at: https://console.cloud.google.com/
+- Enable NotebookLM API
+- Create service account with appropriate permissions
+- Download JSON key file
+- Required for advanced audio generation
+
+Paths
+-----
+- Database: %LocalAppData%\CalmCadence\calmcadence.db
+- Daily Media output: %LocalAppData%\CalmCadence\DailyMedia\
+- Brief cache: SQLite table (BriefCache)
+- Calendar ICS files: %LocalAppData%\CalmCadence\calendar.ics (optional)
+- Google service account key: Configurable path (secure storage recommended)
+
+Projects & Dependencies
+-----------------------
+CalmCadence.App (WinUI 3):
+- CommunityToolkit.Mvvm 8.4.0
+- Microsoft.EntityFrameworkCore.Design 9.0.10 (PrivateAssets=all, IncludeAssets=runtime;build;native;contentfiles;analyzers;buildtransitive)
+- Microsoft.Extensions.DependencyInjection 9.0.10
+- Microsoft.Extensions.Hosting 9.0.10
+- Microsoft.Extensions.Http 9.0.10
+- Microsoft.WindowsAppSDK 1.*
+- Microsoft.Web.WebView2 1.*
+- Microsoft.Windows.SDK.BuildTools 10.*
+- ProjectReference: CalmCadence.Core, CalmCadence.Data
+
+CalmCadence.Data (EF Core / Data):
+- Microsoft.EntityFrameworkCore.Design 9.0.10 (PrivateAssets=all)
+- Microsoft.EntityFrameworkCore.Sqlite 9.0.10
+- Microsoft.EntityFrameworkCore.Tools 9.0.10 (PrivateAssets=all)
+- ProjectReference: CalmCadence.Core
+
+CalmCadence.Core (Domain):
+- CommunityToolkit.Mvvm 8.4.0
+- Ical.Net 5.1.1
+- Microsoft.Extensions.Logging 9.0.10
+- System.IdentityModel.Tokens.Jwt 7.5.2
+- Microsoft.IdentityModel.Tokens 7.5.2
+- System.Text.Json 9.0.10
+- Google.Apis.Auth 1.64.0
+- Google.Apis.Calendar.v3 1.64.0.3454
+- TargetFramework: net9.0
+- HttpClient configured via DI for API calls
+
+CalmCadence.Tests:
+- coverlet.collector 6.0.2
+- FluentAssertions 8.8.0
+- Microsoft.EntityFrameworkCore.InMemory 9.0.10
+- Microsoft.NET.Test.Sdk 17.12.0
+- Moq 4.20.72
+- xunit 2.9.2
+- xunit.runner.visualstudio 2.8.2
+- ProjectReference: CalmCadence.Core, CalmCadence.Data
+
+Tooling
+-------
+- dotnet-ef (global tool) recommended for migrations:
+  - Install: dotnet tool install --global dotnet-ef
+  - Example: dotnet ef migrations add InitialCreate --project CalmCadence.Data
+  - Update DB: dotnet ef database update --project CalmCadence.Data
+
+Optional Integrations
+---------------------
+Daily Studio Module Integrations:
+
+Google Gemini API:
+- URL: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent
+- Authentication: API key in request header
+- Usage: AI-powered brief generation with structured JSON prompts
+- Rate limits: Free tier available, paid tiers for higher limits
+
+Google NotebookLM API:
+- URL: https://notebooks.googleapis.com/v1alpha/projects/{project}/locations/{location}/notebooks/{notebookId}/audioOverviews
+- Authentication: OAuth 2.0 service account JWT
+- Usage: Advanced AI audio generation with contextual understanding
+- Requirements: Google Cloud project with NotebookLM API enabled
+
+Calendar Integration:
+- ICS file support via Ical.Net library
+- Path: %LocalAppData%\CalmCadence\calendar.ics
+- Format: Standard iCalendar (.ics) files
+- Features: Event parsing, time zone handling, recurrence support
+ 
+Google Calendar (Live Sync):
+- OAuth 2.0 sign-in with loopback flow (Google.Apis.Auth; LocalServerCodeReceiver)
+- Scopes: https://www.googleapis.com/auth/calendar, https://www.googleapis.com/auth/calendar.events
+- Client secrets: set env vars CALMCADENCE_GOOGLE_CLIENT_ID and CALMCADENCE_GOOGLE_CLIENT_SECRET, or place google_client_secrets.json in %LocalAppData%/CalmCadence
+- Token storage: refresh/access tokens encrypted via DPAPI at %LocalAppData%/CalmCadence/google_oauth_tokens.json.enc
+- Provider: GoogleCalendarProvider (ICalendarProvider)
+- Sync service: GoogleCalendarSyncService (bi-directional upsert within date range)
+
+Media Processing:
+- Audio: Multi-tier generation — NotebookLM (primary) with Gemini TTS fallback; MP3 output; offline placeholder available
+- Video: FFmpeg integration implemented for slideshow creation (System.Drawing for slides, MP4 assembly, audio mux)
+- Storage: %LocalAppData%\CalmCadence\DailyMedia\ with date-based naming
+- Retention: Configurable cleanup (default 30 days)
+
+Security Considerations:
+- API keys stored in application settings (encrypted via DPAPI)
+- Service account keys require secure file storage
+- OAuth tokens cached with automatic refresh
+- Privacy controls for data redaction (locations, notes)
+
+Offline Capabilities:
+- Deterministic brief generation without API calls
+- Cached results with SHA256 hash validation
+- Local audio generation as fallback
+- Graceful degradation when services unavailable

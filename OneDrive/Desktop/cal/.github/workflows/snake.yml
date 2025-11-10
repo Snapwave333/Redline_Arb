@@ -1,0 +1,40 @@
+name: Generate Contribution Snake
+
+on:
+  # Run daily to keep the SVGs fresh
+  schedule:
+    - cron: "0 0 * * *"
+  # Allow manual trigger
+  workflow_dispatch:
+  # Also regenerate on pushes to main
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Verify GITHUB_TOKEN permissions
+        run: |
+          if [ -z "${{ secrets.GITHUB_TOKEN }}" ]; then
+            echo "GITHUB_TOKEN is not available. Please enable GitHub Actions default token in repo settings." >&2
+            exit 1
+          fi
+      - name: Generate snake SVGs
+        uses: Platane/snk@v3
+        with:
+          github_user_name: Snapwave333
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      - name: Publish SVGs to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

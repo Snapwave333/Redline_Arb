@@ -1,0 +1,63 @@
+[package]
+name = "chroma"
+version = "0.2.0"
+edition = "2021"
+description = "Rust-based ASCII art shader audio visualizer for your terminal"
+repository = "https://github.com/yuri-xyz/chroma"
+homepage = "https://github.com/yuri-xyz/chroma"
+documentation = "https://github.com/yuri-xyz/chroma#readme"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+keywords = ["audio", "visualizer", "ascii", "terminal", "shader", "gpu", "vj"]
+categories = ["multimedia", "command-line-utilities"]
+
+[dependencies]
+# GPU/Graphics
+wgpu = "22.1"
+pollster = "0.3"
+bytemuck = { version = "1.14", features = ["derive"] }
+
+# Terminal/UI
+crossterm = "0.28"
+
+# System info for RAM metrics
+sysinfo = "0.29"
+
+# Audio (optional feature)
+cpal = { version = "0.15", optional = true }
+rustfft = { version = "6.2", optional = true }
+
+# NVIDIA GPU metrics (optional)
+nvml-wrapper = { version = "0.11", optional = true }
+
+# Utilities
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"
+flume = "0.11"
+rand = "0.8"
+unicode-width = "0.1"
+clap = { version = "4.5", features = ["derive"] }
+sha2 = "0.10"
+notify = "6.1"
+dirs = "5.0"
+tokio = { version = "1.0", features = ["full"] }
+
+[dev-dependencies]
+criterion = "0.5"
+pollster = { version = "0.3", features = ["macro"] }
+
+[features]
+default = []
+audio = ["cpal", "rustfft"]
+nvml = ["nvml-wrapper"]
+amd = []
+intel = []
+
+[[bin]]
+name = "chroma"
+path = "src/main.rs"
+
+[lib]
+name = "chroma"
+path = "src/lib.rs"

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Page
+    x:Class="CalmCadence.App.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:CalmCadence.App"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <StackPanel
+                Grid.Row="0"
+                Margin="20"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    FontSize="32"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource MyLabel}"
+                    Text="CalmCadence" />
+                <TextBlock
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    Opacity="0.7"
+                    Style="{StaticResource MyLabel}"
+                    Text="Your Daily Productivity Companion" />
+            </StackPanel>
+
+            <!-- Main Content -->
+            <ScrollViewer
+                Grid.Row="1"
+                HorizontalScrollMode="Disabled"
+                VerticalScrollMode="Auto">
+                <StackPanel
+                    Margin="20"
+                    Spacing="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+                    <!-- Daily Brief Status Card -->
+                    <Border
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="20"
+                        Width="400">
+                        <StackPanel Spacing="15">
+                            <TextBlock
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                Style="{StaticResource MyLabel}"
+                                Text="Daily Brief Status" />
+
+                            <!-- Status Display -->
+                            <StackPanel Spacing="10">
+                                <ProgressRing
+                                    IsActive="{Binding IsLoading}"
+                                    Width="32"
+                                    Height="32"
+                                    HorizontalAlignment="Left" />
+
+                                <TextBlock
+                                    FontSize="16"
+                                    Style="{StaticResource MyLabel}"
+                                    Text="{Binding StatusMessage}" />
+                            </StackPanel>
+
+                            <!-- Action Buttons -->
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="10"
+                                HorizontalAlignment="Center">
+                                <Button
+                                    Content="View Daily Studio"
+                                    Click="OnDailyStudioClicked"
+                                    Style="{StaticResource PrimaryAction}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Quick Actions Card -->
+                    <Border
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="20"
+                        Width="400">
+                        <StackPanel Spacing="15">
+                            <TextBlock
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                Style="{StaticResource MyLabel}"
+                                Text="Quick Actions" />
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Button
+                                    Grid.Column="0"
+                                    Content="Google Integration"
+                                    Click="OnGoogleIntegrationClicked"
+                                    Style="{StaticResource Action}"
+                                    HorizontalAlignment="Stretch" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Content="Manage Routines"
+                                    Click="OnManageRoutinesClicked"
+                                    Style="{StaticResource Action}"
+                                    HorizontalAlignment="Stretch" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Footer -->
+            <TextBlock
+                Grid.Row="2"
+                Margin="20"
+                HorizontalAlignment="Center"
+                Opacity="0.5"
+                Style="{StaticResource MyLabel}"
+                Text="Ready to boost your productivity" />
+        </Grid>
+    </Page.Content>
+</Page>

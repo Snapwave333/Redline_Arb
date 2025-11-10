@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200" viewBox="0 0 800 200">
+<rect width="800" height="200" fill="#13232F"/>
+<text x="100" y="120" font-family="Inter, sans-serif" font-size="80" font-weight="700" fill="#2C7DA0">Calm</text>
+<text x="340" y="120" font-family="Inter, sans-serif" font-size="80" font-weight="400" fill="#1B3A4B">Cadence</text>
+</svg>

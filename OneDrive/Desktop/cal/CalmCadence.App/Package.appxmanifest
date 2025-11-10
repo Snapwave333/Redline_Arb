@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="uap rescap desktop">
+
+  <Identity
+    Name="392e4a6b-89da-44ba-98bc-633d25b14205"
+    Publisher="CN=User Name"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="392e4a6b-89da-44ba-98bc-633d25b14205" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>CalmCadence.App</DisplayName>
+    <PublisherDisplayName>User Name</PublisherDisplayName>
+    <Logo>Assets\CalmCadence_Icon.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="CalmCadence.App"
+        Description="CalmCadence.App"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\CalmCadence_Icon.png"
+        Square44x44Logo="Assets\CalmCadence_Icon.png"
+        ToastCapable="true">
+        <uap:DefaultTile Wide310x150Logo="Assets\CalmCadence_Icon.png" />
+        <uap:SplashScreen Image="Assets\CalmCadence_Icon.png" />
+      </uap:VisualElements>
+      <Extensions>
+        <desktop:Extension Category="windows.appNotifications">
+          <desktop:AppNotifications />
+        </desktop:Extension>
+        <desktop:Extension Category="windows.appExecutionAlias">
+          <desktop:AppExecutionAlias>
+            <desktop:ExecutionAlias Alias="CalmCadence.exe" />
+          </desktop:AppExecutionAlias>
+        </desktop:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>

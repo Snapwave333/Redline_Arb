@@ -1,0 +1,35 @@
+{
+  "name": "kalshi-ach-microservice",
+  "version": "1.0.0",
+  "description": "ACH Transfer Microservice for Kalshi Trading Bot using Plaid + Dwolla",
+  "main": "ach_manager.js",
+  "scripts": {
+    "start": "node ach_manager.js",
+    "dev": "nodemon ach_manager.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "ach",
+    "plaid",
+    "dwolla",
+    "transfer",
+    "microservice"
+  ],
+  "author": "Kalshi Trading Bot Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "plaid": "^23.0.0",
+    "node-fetch": "^2.7.0",
+    "uuid": "^9.0.1",
+    "firebase-admin": "^11.11.0",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

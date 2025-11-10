@@ -1,0 +1,23 @@
+<Project>
+  <!-- Centralized versioning and SourceLink defaults. CI will override Version and AssemblyInformationalVersion on tag builds. -->
+  <PropertyGroup>
+    <!-- Sensible defaults for local/dev builds; CI injects real versions via /p:Version and /p:AssemblyInformationalVersion -->
+    <Version Condition="'$(Version)' == ''">0.1.0-dev</Version>
+    <PackageVersion Condition="'$(PackageVersion)' == ''">$(Version)</PackageVersion>
+    <!-- Keep Assembly/File version simple; informational version carries the tag and commit SHA -->
+    <AssemblyInformationalVersion Condition="'$(AssemblyInformationalVersion)' == ''">$(Version)</AssemblyInformationalVersion>
+
+    <!-- Build determinism and repository metadata -->
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <Deterministic>true</Deterministic>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <EnableSourceLink>true</EnableSourceLink>
+    <RepositoryUrl>https://github.com/Snapwave333/CalmCadence</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <!-- SourceLink to enable clickable source in PDBs -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+</Project>
